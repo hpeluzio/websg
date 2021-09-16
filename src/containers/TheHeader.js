@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setLayoutSideBarShow } from "../redux/actions/layout/layoutActions";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 import {
   CHeader,
   CToggler,
@@ -11,37 +11,36 @@ import {
   CSubheader,
   CBreadcrumbRouter,
   CLink,
-} from "@coreui/react";
-import CIcon from "@coreui/icons-react";
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 
 // routes config
-import routes from "../routes";
+import routes from '../routes';
 
 import {
   TheHeaderDropdown,
   TheHeaderDropdownMssg,
   TheHeaderDropdownNotif,
   TheHeaderDropdownTasks,
-} from "./index";
+} from './index';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
-  console.log("sidebarShow", sidebarShow);
+  const sidebarShow = useSelector(s => s.layout.sidebarShow);
+  console.log('sidebarShow::: ', sidebarShow);
 
   const toggleSidebar = () => {
-    const val = [true, "responsive"].includes(sidebarShow)
+    const val = [true, 'responsive'].includes(sidebarShow)
       ? false
-      : "responsive";
+      : 'responsive';
     // dispatch({ type: "set", sidebarShow: val });
     dispatch(setLayoutSideBarShow({ sidebarShow: val }));
   };
 
   const toggleSidebarMobile = () => {
-    console.log("toggleSidebarMobile");
-    const val = [false, "responsive"].includes(sidebarShow)
+    const val = [false, 'responsive'].includes(sidebarShow)
       ? true
-      : "responsive";
+      : 'responsive';
     dispatch(setLayoutSideBarShow({ sidebarShow: val }));
   };
 
@@ -92,8 +91,7 @@ const TheHeader = () => {
           <CLink
             className="c-subheader-nav-link"
             aria-current="page"
-            to="/dashboard"
-          >
+            to="/dashboard">
             <CIcon name="cil-graph" alt="Dashboard" />
             &nbsp;Dashboard
           </CLink>

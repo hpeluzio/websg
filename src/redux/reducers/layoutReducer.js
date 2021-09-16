@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const layoutReducer = (state = initialState, action) => {
-  console.log('type', action);
   switch (action.type) {
     case SET_SIDEBARSHOW:
       return { ...state, sidebarShow: action.payload.sidebarShow };

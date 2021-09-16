@@ -1,5 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSession } from 'src/redux/actions/session/sessionActions';
+
 import {
   CButton,
   CCard,
@@ -12,11 +15,59 @@ import {
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
-  CRow
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+  CRow,
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+
+import SessionService from 'src/services/SessionService';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(s => s.session.token);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  //Form validation
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [errorPassword, setErrorPassword] = useState(null);
+  const [errorLog, setErrorLog] = useState('');
+
+  const login = useCallback(async () => {
+    const { status, data } = await SessionService.login({
+      email: 'h@v.com',
+      password: 'qweqwe',
+    });
+    console.log('Login', status, data);
+
+    if (status === 200) {
+      dispatch(setSession({ user: data.user, token: data.token }));
+    } else if (status === 401) {
+      setErrorLog('Login ou senha incorretos.');
+    } else {
+      setErrorLog('Ocorreu algum erro.');
+    }
+  }, []);
+
+  const validateFieldEmail = useCallback(() => {
+    if (email === '') {
+      setErrorEmail('Preencha seu e-mail corretamente.');
+    } else {
+      setErrorEmail(null);
+    }
+  }, [email]);
+
+  const validateFieldPassword = useCallback(() => {
+    password.length >= 6
+      ? setErrorPassword(null)
+      : setErrorPassword('Forneça uma senha com 6 dígitos ou maior.');
+    return password.length >= 6;
+  }, [password]);
+
+  // useEffect(() => {
+  //   console.log('password', email, password );
+  // }, [password, email]);
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -27,14 +78,20 @@ const Login = () => {
                 <CCardBody>
                   <CForm>
                     <h1>Login</h1>
-                    <p className="text-muted">Sign In to your account</p>
+                    {/* <p className="text-muted">Sign In to your account</p> */}
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Username" autoComplete="username" />
+                      <CInput
+                        type="text"
+                        placeholder="E-mail"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        // autoComplete="email"
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -42,20 +99,33 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" />
+                      <CInput
+                        type="password"
+                        placeholder="Senha"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        autoComplete="current-password"
+                      />
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        <CButton
+                          color="success"
+                          className="px-4"
+                          onClick={login}>
+                          Login
+                        </CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">Forgot password?</CButton>
+                        {/* <CButton color="link" className="px-0">
+                          Forgot password?
+                        </CButton> */}
                       </CCol>
                     </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+              {/* <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
@@ -66,13 +136,13 @@ const Login = () => {
                     </Link>
                   </div>
                 </CCardBody>
-              </CCard>
+              </CCard> */}
             </CCardGroup>
           </CCol>
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

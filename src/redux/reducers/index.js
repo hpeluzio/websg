@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import { sessionReducer } from "./sessionReducer";
-import { layoutReducer } from "./layoutReducer";
+import { sessionReducer } from './sessionReducer';
+import { layoutReducer } from './layoutReducer';
 
 export const rootReducer = combineReducers({
   session: sessionReducer,

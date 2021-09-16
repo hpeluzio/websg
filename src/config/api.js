@@ -3,8 +3,8 @@ import axios from 'axios';
 import store from 'src/redux/store';
 
 var instance = axios.create({
-  // baseURL: process.env.API_URLAPI_URL,
-  baseURL: 'http://127.0.0.1:3333',
+  baseURL: process.env.REACT_APP_API_URL,
+  // baseURL: 'http://127.0.0.1:3333',
   timeout: 25000,
 });
 

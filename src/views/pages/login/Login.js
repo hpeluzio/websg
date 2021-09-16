@@ -60,9 +60,7 @@ const Login = () => {
   // }, [password, email]);
 
   const login = useCallback(async () => {
-    console.log('login');
     if (validateFieldEmail() && validateFieldPassword()) {
-      console.log('login2');
       const { status, data } = await SessionService.login({
         email: 'h@v.com',
         password: 'qweqwe',

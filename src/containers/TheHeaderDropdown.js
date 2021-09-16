@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSession } from '../redux/actions/session/sessionActions';
 import {
-  CBadge,
+  // CBadge,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CImg,
+  // CImg,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
@@ -16,7 +16,6 @@ const TheHeaderDropdown = () => {
 
   const logout = useCallback(() => {
     var confirmation = window.confirm('Deseja encerrar a sessão?');
-    console.log('confirmation: ', confirmation);
 
     if (confirmation === true) {
       dispatch(setSession({ user: {}, token: null }));

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSession } from 'src/redux/actions/session/sessionActions';
+import { useHistory } from 'react-router-dom';
 
 import {
   CButton,
@@ -22,6 +23,7 @@ import CIcon from '@coreui/icons-react';
 import SessionService from 'src/services/SessionService';
 
 const Login = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const token = useSelector(s => s.session.token);
 
@@ -29,44 +31,54 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   //Form validation
-  const [errorEmail, setErrorEmail] = useState(null);
-  const [errorPassword, setErrorPassword] = useState(null);
+  const [errorEmail, setErrorEmail] = useState('');
+  const [errorPassword, setErrorPassword] = useState('');
   const [errorLog, setErrorLog] = useState('');
-
-  const login = useCallback(async () => {
-    const { status, data } = await SessionService.login({
-      email: 'h@v.com',
-      password: 'qweqwe',
-    });
-    console.log('Login', status, data);
-
-    if (status === 200) {
-      dispatch(setSession({ user: data.user, token: data.token }));
-    } else if (status === 401) {
-      setErrorLog('Login ou senha incorretos.');
-    } else {
-      setErrorLog('Ocorreu algum erro.');
-    }
-  }, []);
 
   const validateFieldEmail = useCallback(() => {
     if (email === '') {
       setErrorEmail('Preencha seu e-mail corretamente.');
+      return false;
     } else {
-      setErrorEmail(null);
+      setErrorEmail('');
+      return true;
     }
   }, [email]);
 
   const validateFieldPassword = useCallback(() => {
-    password.length >= 6
-      ? setErrorPassword(null)
-      : setErrorPassword('Forneça uma senha com 6 dígitos ou maior.');
-    return password.length >= 6;
+    if (password === '') {
+      setErrorPassword('Preencha uma senha corretamente.');
+      return false;
+    } else {
+      setErrorPassword('');
+      return true;
+    }
   }, [password]);
 
   // useEffect(() => {
   //   console.log('password', email, password );
   // }, [password, email]);
+
+  const login = useCallback(async () => {
+    console.log('login');
+    if (validateFieldEmail() && validateFieldPassword()) {
+      console.log('login2');
+      const { status, data } = await SessionService.login({
+        email: 'h@v.com',
+        password: 'qweqwe',
+      });
+      console.log('Login', status, data);
+
+      if (status === 200) {
+        dispatch(setSession({ user: data.user, token: data.token }));
+        history.push('/home');
+      } else if (status === 401) {
+        setErrorLog('Login ou senha incorretos.');
+      } else {
+        setErrorLog('Ocorreu algum erro.');
+      }
+    }
+  }, [history, dispatch, validateFieldEmail, validateFieldPassword]);
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
@@ -90,9 +102,11 @@ const Login = () => {
                         placeholder="E-mail"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        // autoComplete="email"
+                        autoComplete="email"
+                        onBlur={validateFieldEmail}
                       />
                     </CInputGroup>
+
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
                         <CInputGroupText>
@@ -105,8 +119,18 @@ const Login = () => {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         autoComplete="current-password"
+                        onBlur={validateFieldPassword}
                       />
                     </CInputGroup>
+                    {errorEmail !== '' && (
+                      <p style={{ color: 'red' }}>{errorEmail}</p>
+                    )}
+                    {errorPassword !== '' && (
+                      <p style={{ color: 'red' }}>{errorPassword}</p>
+                    )}
+                    {errorLog !== '' && (
+                      <p style={{ color: 'red' }}>{errorLog}</p>
+                    )}
                     <CRow>
                       <CCol xs="6">
                         <CButton

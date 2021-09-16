@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 
+import { colors } from 'src/styles';
+
 import {
   CCreateElement,
   CSidebar,
@@ -25,6 +27,7 @@ const TheSidebar = () => {
 
   return (
     <CSidebar
+      style={{ background: colors.primaryDark }}
       show={show}
       onShowChange={val =>
         dispatch(setLayoutSideBarShow({ sidebarShow: val }))
@@ -41,7 +44,7 @@ const TheSidebar = () => {
           height={35}
         />
       </CSidebarBrand>
-      <CSidebarNav>
+      <CSidebarNav style={{ background: colors.primaryDark }}>
         <CCreateElement
           items={navigation}
           components={{

@@ -37,8 +37,6 @@ const TheHeader = () => {
     if (token === null) {
       history.push('/login');
     }
-
-    console.log(token);
   }, [history, token]);
 
   const toggleSidebar = () => {

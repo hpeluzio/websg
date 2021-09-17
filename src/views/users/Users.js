@@ -237,7 +237,7 @@ const Users = () => {
         items={usersData}
         fields={fields}
         columnFilter
-        tableFilter={{ label: 'Filtrar' }}
+        tableFilter={{ label: 'Filtrar', placeholder: 'Digite algo' }}
         footer
         itemsPerPageSelect={{ label: 'Items por página' }}
         itemsPerPage={20}

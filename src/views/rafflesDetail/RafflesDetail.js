@@ -19,14 +19,8 @@ const RafflesDetail = props => {
   const [games, setGames] = useState([]);
   let { id } = useParams();
 
-  useEffect(() => {
-    // console.log(location.pathname); // result: '/secondpage'
-    // console.log(location.search.get('id')); // result: '?query=abc'
-  }, [id]);
-
   const loadRaffle = useCallback(async () => {
     const _response = await RaffleService.detail({ id });
-    console.log(_response);
     setRaffle(_response.data);
     setGames(_response.data.games);
   }, [id]);
@@ -50,7 +44,6 @@ const RafflesDetail = props => {
   }, []);
 
   const numbersHandler = useCallback(numbers => {
-    console.log('numbers: ', numbers);
     if (numbers === null || numbers === undefined) {
       return 'Ainda não realizado';
     } else return numbers;

@@ -21,8 +21,6 @@ const Raffles = () => {
 
   const onRowClicked = useCallback(
     item => {
-      // const _response = await RaffleService.index();
-      console.log(item);
       history.push({
         pathname: `/rafflesdetail/${item.id}`,
         // search: `?id=${item.id}`,

@@ -12,7 +12,6 @@ const Users = () => {
 
   const loadUsers = useCallback(async () => {
     const _response = await UserService.index();
-    console.log(_response);
     setUsers(_response.data);
   }, []);
 

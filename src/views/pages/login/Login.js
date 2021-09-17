@@ -21,6 +21,7 @@ import {
 import CIcon from '@coreui/icons-react';
 
 import SessionService from 'src/services/SessionService';
+import { colors } from 'src/styles';
 
 const Login = () => {
   const history = useHistory();
@@ -34,6 +35,12 @@ const Login = () => {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [errorLog, setErrorLog] = useState('');
+
+  useEffect(() => {
+    if (token !== null) {
+      history.push('/home');
+    }
+  }, [token]);
 
   const validateFieldEmail = useCallback(() => {
     if (email === '') {
@@ -54,10 +61,6 @@ const Login = () => {
       return true;
     }
   }, [password]);
-
-  // useEffect(() => {
-  //   console.log('password', email, password );
-  // }, [password, email]);
 
   const login = useCallback(async () => {
     if (validateFieldEmail() && validateFieldPassword()) {
@@ -147,18 +150,29 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              {/* <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+              <CCard
+                className="text-white py-5 d-md-down-none"
+                style={{ width: '44%', background: colors.primaryDark }}>
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.</p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
-                    </Link>
+                    <h2>Diamante Beneficente</h2>
+                    <p>
+                      Seja muito bem vindo ao Diamante Beneficente Web. Neste
+                      site você pode salvar todas as informações para
+                      auditorias.
+                    </p>
+                    {/* <Link to="/register">
+                      <CButton
+                        color="primary"
+                        className="mt-3"
+                        active
+                        tabIndex={-1}>
+                        Register Now!
+                      </CButton>
+                    </Link> */}
                   </div>
                 </CCardBody>
-              </CCard> */}
+              </CCard>
             </CCardGroup>
           </CCol>
         </CRow>

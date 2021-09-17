@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 import {
@@ -26,7 +27,17 @@ import {
 
 const TheHeader = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sidebarShow = useSelector(s => s.layout.sidebarShow);
+  const token = useSelector(s => s.session.token);
+
+  useEffect(() => {
+    if (token === null) {
+      history.push('/login');
+    }
+
+    console.log(token);
+  }, [token]);
 
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow)

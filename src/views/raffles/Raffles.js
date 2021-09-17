@@ -1,22 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Container } from './styles';
 import { CDataTable } from '@coreui/react';
 import moment from 'moment';
-
 import RaffleService from 'src/services/RaffleService';
-
-const usersData = [
-  {
-    id: 0,
-    name: 'John Doe',
-    registered: '2018/01/01',
-    role: 'Guest',
-    status: 'Pending',
-  },
-];
 
 const Raffles = () => {
   const [raffles, setRaffles] = useState([]);
+  const history = useHistory();
 
   const loadRaffles = useCallback(async () => {
     const _response = await RaffleService.index();
@@ -27,6 +18,19 @@ const Raffles = () => {
   useEffect(() => {
     loadRaffles();
   }, [loadRaffles]);
+
+  const onRowClicked = useCallback(
+    item => {
+      // const _response = await RaffleService.index();
+      console.log(item);
+      history.push({
+        pathname: `/rafflesdetail/${item.id}`,
+        // search: `?id=${item.id}`,
+        // state: { detail: response.data }
+      });
+    },
+    [history],
+  );
 
   const fields = [
     { key: 'id', _style: { width: '5%' }, label: 'id' },
@@ -49,6 +53,7 @@ const Raffles = () => {
         hover
         sorter
         pagination
+        onRowClick={item => onRowClicked(item)}
         scopedSlots={{
           init: item => (
             <td>{moment(item.init).format('DD/MM/YY, H:mm:ss')}</td>

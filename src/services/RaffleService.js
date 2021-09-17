@@ -10,9 +10,9 @@ class RaffleService {
     return _response;
   }
 
-  async list({ id }) {
+  async detail({ id }) {
     const _response = await api
-      .post(`/raffle/${id}`)
+      .get(`/raffle/${id}`)
       .then(r => r)
       .catch(e => e.response);
     // console.log(_response);

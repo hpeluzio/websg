@@ -62,6 +62,9 @@ const RafflesDetail = props => {
     { key: 'numbers', label: 'Números' },
     { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
+    { key: 'payment_id', label: 'Pagamento' },
+    { key: 'type', label: 'Tipo' },
+    { key: 'payment_date', label: 'Data pgto' },
   ];
 
   if (raffle)
@@ -131,6 +134,13 @@ const RafflesDetail = props => {
               <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
             ),
             status: item => <td>{statusHandler(item.status)}</td>,
+            payment_id: item => <td>{item.payment.id}</td>,
+            type: item => <td>{item.payment.type}</td>,
+            payment_date: item => (
+              <td>
+                {moment(item.payment.created_at).format('DD/MM/YY, H:mm:ss')}
+              </td>
+            ),
           }}
         />
       </Container>

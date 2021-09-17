@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 const RafflesDetail = props => {
-  const [raffle, setRaffle] = useState([]);
+  const [raffle, setRaffle] = useState({});
   const [games, setGames] = useState([]);
   let { id } = useParams();
 
@@ -27,8 +27,8 @@ const RafflesDetail = props => {
   const loadRaffle = useCallback(async () => {
     const _response = await RaffleService.detail({ id });
     console.log(_response);
-    setRaffle(_response.data[0]);
-    setGames(_response.data[0].games);
+    setRaffle(_response.data);
+    setGames(_response.data.games);
   }, [id]);
 
   useEffect(() => {
@@ -50,9 +50,10 @@ const RafflesDetail = props => {
   }, []);
 
   const numbersHandler = useCallback(numbers => {
+    console.log('numbers: ', numbers);
     if (numbers === null || numbers === undefined) {
       return 'Ainda não realizado';
-    }
+    } else return numbers;
   }, []);
 
   const fields = [
@@ -63,10 +64,11 @@ const RafflesDetail = props => {
     { key: 'created_at', label: 'Jogado' },
   ];
 
-  return (
-    <Container>
-      <RaffleContent>
-        {/* <Row>
+  if (raffle)
+    return (
+      <Container>
+        <RaffleContent>
+          {/* <Row>
           <Column>
             <Text>id:</Text>
           </Column>
@@ -75,64 +77,64 @@ const RafflesDetail = props => {
           </Column>
         </Row> */}
 
-        <Row>
-          <Column>
-            <Text>Sorteio:</Text>{' '}
-          </Column>
-          <Column2>
-            <Text2>{raffle.name}</Text2>
-          </Column2>
-        </Row>
+          <Row>
+            <Column>
+              <Text>Sorteio:</Text>{' '}
+            </Column>
+            <Column2>
+              <Text2>{raffle.name}</Text2>
+            </Column2>
+          </Row>
 
-        <Row>
-          <Column>
-            <Text>Início:</Text>{' '}
-          </Column>
-          <Column2>
-            <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
-          </Column2>
-        </Row>
+          <Row>
+            <Column>
+              <Text>Início:</Text>{' '}
+            </Column>
+            <Column2>
+              <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
+            </Column2>
+          </Row>
 
-        <Row>
-          <Column>
-            <Text>Término:</Text>{' '}
-          </Column>
-          <Column2>
-            <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
-          </Column2>
-        </Row>
+          <Row>
+            <Column>
+              <Text>Término:</Text>{' '}
+            </Column>
+            <Column2>
+              <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
+            </Column2>
+          </Row>
 
-        <Row>
-          <Column>
-            <Text>Numeros:</Text>{' '}
-          </Column>
-          <Column2>
-            <Text2>{numbersHandler(raffle.numbers)}</Text2>
-          </Column2>
-        </Row>
-      </RaffleContent>
+          <Row>
+            <Column>
+              <Text>Numeros:</Text>{' '}
+            </Column>
+            <Column2>
+              <Text2>{numbersHandler(raffle.numbers)}</Text2>
+            </Column2>
+          </Row>
+        </RaffleContent>
 
-      <CDataTable
-        items={games}
-        fields={fields}
-        // columnFilter
-        tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
-        // footer
-        itemsPerPageSelect={{ label: 'Items por página' }}
-        itemsPerPage={20}
-        hover
-        sorter
-        pagination
-        // onRowClick={item => onRowClicked(item)}
-        scopedSlots={{
-          created_at: item => (
-            <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
-          ),
-          status: item => <td>{statusHandler(item.status)}</td>,
-        }}
-      />
-    </Container>
-  );
+        <CDataTable
+          items={games}
+          fields={fields}
+          // columnFilter
+          tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
+          // footer
+          itemsPerPageSelect={{ label: 'Items por página' }}
+          itemsPerPage={20}
+          hover
+          sorter
+          pagination
+          // onRowClick={item => onRowClicked(item)}
+          scopedSlots={{
+            created_at: item => (
+              <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
+            ),
+            status: item => <td>{statusHandler(item.status)}</td>,
+          }}
+        />
+      </Container>
+    );
 };
 
 export default RafflesDetail;

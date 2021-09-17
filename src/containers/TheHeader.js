@@ -37,7 +37,7 @@ const TheHeader = () => {
     }
 
     console.log(token);
-  }, [token]);
+  }, [history, token]);
 
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow)

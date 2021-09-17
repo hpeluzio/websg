@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 
 import { colors } from 'src/styles';
+import trevo from '../assets/icons/trevo.svg';
 
 import {
   CCreateElement,
@@ -37,11 +38,13 @@ const TheSidebar = () => {
           className="c-sidebar-brand-full"
           name="logo-negative"
           height={35}
+          src={trevo}
         />
         <CIcon
           className="c-sidebar-brand-minimized"
           name="sygnet"
           height={35}
+          src={trevo}
         />
       </CSidebarBrand>
       <CSidebarNav style={{ background: colors.primaryDark }}>

@@ -15,6 +15,8 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
+import trevo from '../assets/icons/trevo.svg';
+
 // routes config
 import routes from '../routes';
 
@@ -67,7 +69,7 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
-        <CIcon name="logo" height="48" alt="Logo" />
+        <CIcon name="logo" height="48" alt="Logo" src={trevo} />
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">

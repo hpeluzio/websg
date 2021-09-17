@@ -3,12 +3,12 @@ import {} from '@coreui/react';
 
 import { Container, Container2 } from './styles';
 
-const Users = () => {
+const Raffles = () => {
   return (
     <Container>
-      <Container2>Users</Container2>
+      <Container2>Raffles</Container2>
     </Container>
   );
 };
 
-export default Users;
+export default Raffles;

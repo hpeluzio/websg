@@ -12,21 +12,6 @@ const _nav = [
     _tag: 'CSidebarNavTitle',
     _children: ['Listas'],
   },
-
-  {
-    _tag: 'CSidebarNavTitle',
-    _children: ['Administrativo'],
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Usuários',
-    to: '/users',
-    icon: <CIcon name="cil-user" customClasses="c-sidebar-nav-icon" />,
-    // badge: {
-    //   color: "info",
-    //   text: "NEW",
-    // },
-  },
   {
     _tag: 'CSidebarNavItem',
     name: 'Sorteios',
@@ -37,34 +22,6 @@ const _nav = [
     //   text: "NEW",
     // },
   },
-  // {
-  //   _tag: 'CSidebarNavDropdown',
-  //   name: 'Pages',
-  //   route: '/pages',
-  //   icon: 'cil-star',
-  //   _children: [
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Login',
-  //       to: '/login',
-  //     },
-  //     // {
-  //     //   _tag: "CSidebarNavItem",
-  //     //   name: "Register",
-  //     //   to: "/register",
-  //     // },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Error 404',
-  //       to: '/404',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Error 500',
-  //       to: '/500',
-  //     },
-  //   ],
-  // },
 ];
 
 export default _nav;

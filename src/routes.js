@@ -5,7 +5,13 @@ const Raffles = React.lazy(() => import('./views/raffles/Raffles'));
 const RafflesDetail = React.lazy(() =>
   import('./views/rafflesDetail/RafflesDetail'),
 );
+
+//Admin area
 const Users = React.lazy(() => import('./views/users/Users'));
+const RafflesAdmin = React.lazy(() => import('./views/admin/raffles/Raffles'));
+const RafflesDetailAdmin = React.lazy(() =>
+  import('./views/admin/rafflesDetail/RafflesDetail'),
+);
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -16,7 +22,15 @@ const routes = [
     name: 'RafflesDetail',
     component: RafflesDetail,
   },
-  { path: '/users', name: 'Users', component: Users },
+
+  // Admin routes
+  { path: '/admin/users', name: 'Users', component: Users },
+  { path: '/admin/raffles', name: 'RafflesAdmin', component: RafflesAdmin },
+  {
+    path: '/admin/rafflesdetail/:id',
+    name: 'RafflesDetailAdmin',
+    component: RafflesDetailAdmin,
+  },
 ];
 
 export default routes;

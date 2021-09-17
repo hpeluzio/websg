@@ -21,10 +21,14 @@ import CIcon from '@coreui/icons-react';
 
 // sidebar nav config
 import navigation from './_nav';
+import navigationAdmin from './_navAdmin';
 
 const TheSidebar = () => {
   const dispatch = useDispatch();
   const show = useSelector(s => s.layout.sidebarShow);
+  const role = useSelector(s => s.session.user.role);
+
+  console.log(role);
 
   return (
     <CSidebar
@@ -49,7 +53,7 @@ const TheSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav style={{ background: colors.primaryDark }}>
         <CCreateElement
-          items={navigation}
+          items={role === 'admin' ? navigationAdmin : navigation}
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,

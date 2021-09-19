@@ -31,7 +31,7 @@ const Raffles = () => {
   );
 
   const fields = [
-    // { key: 'id', _style: { width: '5%' }, label: 'id' },
+    { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Número do sorteio' },
     { key: 'init', label: 'Início' },
     { key: 'end', label: 'Término' },

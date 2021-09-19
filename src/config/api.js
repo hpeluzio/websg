@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 import store from 'src/redux/store';
+import { setLoading } from 'src/redux/actions/layout/layoutActions';
+import { setLayoutSideBarShow } from 'src/redux/actions/layout/layoutActions';
 
 var instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -10,17 +12,40 @@ var instance = axios.create({
 
 instance.defaults.headers['Content-Type'] = 'application/json';
 
-instance.interceptors.request.use(async config => {
-  const state = store.getState();
-  // console.log('state: ', state);
-  const token = await state.session.token;
-  // console.log('token: ', token);
+instance.interceptors.request.use(
+  async config => {
+    // Loading to true
+    store.dispatch(setLoading({ loading: true }));
 
-  if (token) {
-    config.headers.Authorization = `bearer ${await state.session.token}`;
-  }
+    const state = store.getState();
+    const token = await state.session.token;
 
-  return config;
-});
+    if (token) {
+      config.headers.Authorization = `bearer ${await state.session.token}`;
+    }
+    console.log('request');
+    return config;
+  },
+  async error => {
+    // Loading to false
+    store.dispatch(setLoading({ loading: false }));
+    return Promise.reject(error);
+  },
+);
+
+instance.interceptors.response.use(
+  async response => {
+    // Loading to false
+    console.log('response');
+    store.dispatch(setLoading({ loading: false }));
+
+    return response;
+  },
+  async error => {
+    // Loading to false
+    store.dispatch(setLoading({ loading: false }));
+    return Promise.reject(error);
+  },
+);
 
 export default instance;

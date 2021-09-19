@@ -1,1 +1,2 @@
 export const SET_SIDEBARSHOW = 'SET_SIDEBARSHOW';
+export const SET_LOADING = 'SET_LOADING';

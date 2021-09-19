@@ -44,20 +44,21 @@ const RafflesDetail = props => {
   }, []);
 
   const numbersHandler = useCallback(numbers => {
+    console.log('numbers', numbers);
     if (numbers === null || numbers === undefined) {
       return 'Ainda não realizado';
     } else return numbers;
   }, []);
 
   const fields = [
-    { key: 'id', _style: { width: '5%' }, label: 'id' },
+    // { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
     { key: 'numbers', label: 'Números' },
-    { key: 'status', label: 'Status' },
+    // { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
-    { key: 'payment_id', label: 'Pagamento' },
-    { key: 'type', label: 'Tipo' },
-    { key: 'payment_date', label: 'Data pgto' },
+    // { key: 'payment_id', label: 'Pagamento' },
+    // { key: 'type', label: 'Tipo' },
+    // { key: 'payment_date', label: 'Data pgto' },
   ];
 
   if (raffle)

@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { Container, Text } from './styles';
+import { Container, LoaderContainer, Loader } from './styles';
+import Spinner from 'src/assets/spinner.svg';
 
 const TheLoading = () => {
   return (
     <Container>
-      <Text>Carregando...</Text>
+      <LoaderContainer>
+        <Loader />
+      </LoaderContainer>
     </Container>
   );
 };

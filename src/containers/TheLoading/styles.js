@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 import { colors } from 'src/styles';
+import Spinner from 'src/assets/spinner.svg';
 
 export const Container = styled.div`
   position: absolute;
-  height: 100rem;
-  width: 100rem;
+  height: 100%;
+  width: 100%;
   z-index: 10000;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   background-color: rgba(0, 0, 0, 0.1);
   /* height: 20rem;
   width: 20rem; */
@@ -20,11 +21,19 @@ export const Container = styled.div`
   border-width: 0.1rem; */
 `;
 
-export const Text = styled.div`
-  /* position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto; */
+export const LoaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   color: ${colors.white};
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
+  background-color: red;
+  background-color: rgba(0, 0, 0, 0);
+`;
+
+export const Loader = styled.img.attrs({
+  src: Spinner,
+})`
+  height: 10%;
 `;

@@ -68,7 +68,7 @@ const Login = () => {
         email: 'h@v.com',
         password: 'qweqwe',
       });
-      console.log('Login', status, data);
+      // console.log('Login', status, data);
 
       if (status === 200) {
         dispatch(setSession({ user: data.user, token: data.token }));

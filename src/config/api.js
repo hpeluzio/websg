@@ -23,7 +23,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `bearer ${await state.session.token}`;
     }
-    console.log('request');
+
     return config;
   },
   async error => {
@@ -36,7 +36,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   async response => {
     // Loading to false
-    console.log('response');
     store.dispatch(setLoading({ loading: false }));
 
     return response;

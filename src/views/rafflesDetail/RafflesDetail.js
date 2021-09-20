@@ -44,7 +44,6 @@ const RafflesDetail = props => {
   }, []);
 
   const numbersHandler = useCallback(numbers => {
-    console.log('numbers', numbers);
     if (numbers === null || numbers === undefined) {
       return 'Ainda não realizado';
     } else return numbers;

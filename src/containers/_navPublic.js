@@ -14,20 +14,6 @@ const _nav = [
     to: '/blog',
     icon: <CIcon name="cil-notes" customClasses="c-sidebar-nav-icon" />,
   },
-  {
-    _tag: 'CSidebarNavTitle',
-    _children: ['Listas'],
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Sorteios',
-    to: '/raffles',
-    icon: <CIcon name="cil-list-rich" customClasses="c-sidebar-nav-icon" />,
-    // badge: {
-    //   color: "info",
-    //   text: "NEW",
-    // },
-  },
 ];
 
 export default _nav;

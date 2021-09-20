@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 
@@ -20,13 +20,26 @@ import {
 import CIcon from '@coreui/icons-react';
 
 // sidebar nav config
-import navigation from './_nav';
+import navigationPublic from './_navPublic';
+import navigationUser from './_nav';
 import navigationAdmin from './_navAdmin';
 
 const TheSidebar = () => {
   const dispatch = useDispatch();
   const show = useSelector(s => s.layout.sidebarShow);
   const role = useSelector(s => s.session.user.role);
+
+  const nav = useCallback(() => {
+    if (role === undefined) {
+      return navigationPublic;
+    }
+    if (role === 'user') {
+      return navigationUser;
+    }
+    if (role === 'admin') {
+      return navigationAdmin;
+    }
+  }, [role]);
 
   return (
     <CSidebar
@@ -51,7 +64,7 @@ const TheSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav style={{ background: colors.primaryDark }}>
         <CCreateElement
-          items={role === 'admin' ? navigationAdmin : navigation}
+          items={nav()}
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,

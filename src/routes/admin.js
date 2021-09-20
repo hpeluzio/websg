@@ -1,7 +1,6 @@
 import React from 'react';
 
 const routes = [
-  // Admin routes
   {
     path: '/admin/users',
     name: 'Users',

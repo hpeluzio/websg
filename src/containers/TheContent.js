@@ -54,7 +54,7 @@ const TheContent = () => {
             {common.map((route, idx) => {
               return (
                 route.component && (
-                  <UserRoute
+                  <PublicRoute
                     key={idx}
                     path={route.path}
                     exact={route.exact}

@@ -11,7 +11,7 @@ import {
   CHeaderNavLink,
   CSubheader,
   CBreadcrumbRouter,
-  CLink,
+  // CLink,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
@@ -84,12 +84,14 @@ const TheHeader = () => {
         </CHeaderNavItem> */}
       </CHeaderNav>
 
-      <CHeaderNav className="px-3">
-        {/* <TheHeaderDropdownNotif />
+      {token && (
+        <CHeaderNav className="px-3">
+          {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg /> */}
-        <TheHeaderDropdown />
-      </CHeaderNav>
+          <TheHeaderDropdown />
+        </CHeaderNav>
+      )}
 
       <CSubheader className="px-3 justify-content-between">
         <CBreadcrumbRouter

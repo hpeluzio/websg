@@ -1,7 +1,7 @@
 import React from 'react';
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: '' },
   {
     path: '/home',
     name: 'Home',
@@ -11,6 +11,11 @@ const routes = [
     path: '/blog',
     name: 'Blog',
     component: React.lazy(() => import('../views/blog/Blog')),
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: React.lazy(() => import('../views/login/Login')),
   },
 ];
 

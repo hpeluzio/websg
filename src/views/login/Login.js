@@ -82,7 +82,7 @@ const Login = () => {
   }, [history, dispatch, validateFieldEmail, validateFieldPassword]);
 
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+    <div className="/*c-app c-default-layout flex-row align-items-center*/">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">

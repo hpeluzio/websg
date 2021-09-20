@@ -5,7 +5,7 @@ const routes = [
     path: '/raffles',
     exact: true,
     name: 'Raffles',
-    component: React.lazy(() => import('..//views/raffles/Raffles')),
+    component: React.lazy(() => import('../views/raffles/Raffles')),
   },
   {
     path: '/raffles/:id',

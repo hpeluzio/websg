@@ -22,7 +22,7 @@ const Raffles = () => {
   const onRowClicked = useCallback(
     item => {
       history.push({
-        pathname: `/rafflesdetail/${item.id}`,
+        pathname: `/raffles/${item.id}`,
         // search: `?id=${item.id}`,
         // state: { detail: response.data }
       });

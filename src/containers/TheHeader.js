@@ -9,9 +9,9 @@ import {
   CHeaderNav,
   CHeaderNavItem,
   CHeaderNavLink,
-  // CSubheader,
-  // CBreadcrumbRouter,
-  // CLink,
+  CSubheader,
+  CBreadcrumbRouter,
+  CLink,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
@@ -89,7 +89,7 @@ const TheHeader = () => {
         <TheHeaderDropdown />
       </CHeaderNav>
 
-      {/* <CSubheader className="px-3 justify-content-between">
+      <CSubheader className="px-3 justify-content-between">
         <CBreadcrumbRouter
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={routes}
@@ -110,7 +110,7 @@ const TheHeader = () => {
             &nbsp;Settings
           </CLink>
         </div>
-      </CSubheader> */}
+      </CSubheader>
     </CHeader>
   );
 };

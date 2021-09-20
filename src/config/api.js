@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import store from 'src/redux/store';
 import { setLoading } from 'src/redux/actions/layout/layoutActions';
-import { setLayoutSideBarShow } from 'src/redux/actions/layout/layoutActions';
 
 var instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

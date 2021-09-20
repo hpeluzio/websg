@@ -1,7 +1,5 @@
 import React from 'react';
 
-import auth from './auth';
-
 const Home = React.lazy(() => import('./views/home/Home'));
 const Raffles = React.lazy(() => import('./views/raffles/Raffles'));
 const RafflesDetail = React.lazy(() =>
@@ -16,21 +14,26 @@ const RafflesDetailAdmin = React.lazy(() =>
 );
 
 const routes = [
-  { path: '/', exact: true, name: 'Home', onEnter: { auth } },
+  { path: '/', exact: true, name: 'Home' },
   { path: '/home', name: 'Home', component: Home },
-  { path: '/raffles', name: 'Raffles', component: Raffles },
+  { path: '/raffles', exact: true, name: 'Raffles', component: Raffles },
   {
-    path: '/rafflesdetail/:id',
-    name: 'RafflesDetail',
+    path: '/raffles/:id',
+    name: 'Raffles Detail',
     component: RafflesDetail,
   },
 
   // Admin routes
   { path: '/admin/users', name: 'Users', component: Users },
-  { path: '/admin/raffles', name: 'RafflesAdmin', component: RafflesAdmin },
   {
-    path: '/admin/rafflesdetail/:id',
-    name: 'RafflesDetailAdmin',
+    path: '/admin/raffles',
+    exact: true,
+    name: 'Raffles Admin',
+    component: RafflesAdmin,
+  },
+  {
+    path: '/admin/raffles/:id',
+    name: 'Raffles Detail Admin',
     component: RafflesDetailAdmin,
   },
 ];

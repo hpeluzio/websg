@@ -1,5 +1,5 @@
 import React from 'react';
-import { TheContent, TheSidebar, TheFooter, TheHeader } from './index';
+import { TheContent, TheSidebar, /*TheFooter,*/ TheHeader } from './index';
 import { useSelector } from 'react-redux';
 import TheLoading from './TheLoading/index';
 

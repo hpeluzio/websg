@@ -28,8 +28,6 @@ const TheSidebar = () => {
   const show = useSelector(s => s.layout.sidebarShow);
   const role = useSelector(s => s.session.user.role);
 
-  console.log(role);
-
   return (
     <CSidebar
       style={{ background: colors.primaryDark }}

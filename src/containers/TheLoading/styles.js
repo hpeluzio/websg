@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { colors } from 'src/styles';
+// import { colors } from 'src/styles';
 import Spinner from 'src/assets/spinner.svg';
 
 export const Container = styled.div`
@@ -29,5 +29,5 @@ export const Loader = styled.img.attrs({
   top: 35%;
   transform: translateY(-50%);
   height: 10rem;
-  background-color: blue;
+  /* background-color: blue; */
 `;

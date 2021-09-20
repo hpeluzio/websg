@@ -30,6 +30,12 @@ const Raffles = () => {
     [history],
   );
 
+  const numbersHandler = useCallback(numbers => {
+    if (numbers === null || numbers === undefined) {
+      return 'Ainda não realizado';
+    } else return numbers;
+  }, []);
+
   const fields = [
     { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Número do sorteio' },
@@ -57,6 +63,7 @@ const Raffles = () => {
             <td>{moment(item.init).format('DD/MM/YY, H:mm:ss')}</td>
           ),
           end: item => <td>{moment(item.end).format('DD/MM/YY, H:mm:ss')}</td>,
+          numbers: item => <td>{numbersHandler(item.numbers)}</td>,
         }}
       />
     </Container>

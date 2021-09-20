@@ -18,7 +18,7 @@ import CIcon from '@coreui/icons-react';
 import trevo from '../assets/icons/trevo.svg';
 
 // routes config
-import routes from '../routes';
+import routes from 'src/routes/user';
 
 import {
   TheHeaderDropdown,

@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { CContainer, CFade } from '@coreui/react';
+import { useSelector } from 'react-redux';
 
 // routes config
-import routes from '../routes';
+import user from 'src/routes/user';
+import admin from 'src/routes/admin';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -11,21 +13,62 @@ const loading = (
   </div>
 );
 
+const UserRoute = ({ component: Component, ...rest }) => {
+  const role = useSelector(s => s.session.user.role);
+
+  const render = props => {
+    if (role === 'admin') {
+      return <Component {...props} />;
+    }
+    return <Redirect to="/login" />;
+  };
+  return <Route {...rest} render={render} />;
+};
+
+const AdminRoute = ({ component: Component, ...rest }) => {
+  const role = useSelector(s => s.session.user.role);
+
+  const render = props => {
+    if (role === 'admin') {
+      return <Component {...props} />;
+    }
+    return <Redirect to="/login" />;
+  };
+  return <Route {...rest} render={render} />;
+};
+
 const TheContent = () => {
   return (
     <main className="c-main">
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>
-            {routes.map((route, idx) => {
+            {user.map((route, idx) => {
               return (
                 route.component && (
-                  <Route
+                  <UserRoute
                     key={idx}
                     path={route.path}
                     exact={route.exact}
                     name={route.name}
-                    render={props => (
+                    component={props => (
+                      <CFade>
+                        <route.component {...props} />
+                      </CFade>
+                    )}
+                  />
+                )
+              );
+            })}
+            {admin.map((route, idx) => {
+              return (
+                route.component && (
+                  <AdminRoute
+                    key={idx}
+                    path={route.path}
+                    exact={route.exact}
+                    name={route.name}
+                    component={props => (
                       <CFade>
                         <route.component {...props} />
                       </CFade>

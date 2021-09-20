@@ -40,7 +40,7 @@ const Login = () => {
     if (token !== null) {
       history.push('/home');
     }
-  }, [token]);
+  }, [history, token]);
 
   const validateFieldEmail = useCallback(() => {
     if (email === '') {

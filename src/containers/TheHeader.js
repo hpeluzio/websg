@@ -15,7 +15,7 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
-import trevo from '../assets/icons/trevo.svg';
+import trevo_full_dark from '../assets/icons/trevo_full_dark.svg';
 
 // routes config
 import common from 'src/routes/public';
@@ -69,7 +69,7 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
-        <CIcon name="logo" height="48" alt="Logo" src={trevo} />
+        <CIcon name="logo" height="48" alt="Logo" src={trevo_full_dark} />
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">
@@ -84,21 +84,24 @@ const TheHeader = () => {
         </CHeaderNavItem> */}
       </CHeaderNav>
 
-      {token && (
-        <CHeaderNav className="px-3">
-          {/* <TheHeaderDropdownNotif />
+      <CHeaderNav className="px-3">
+        {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg /> */}
-          <TheHeaderDropdown />
-        </CHeaderNav>
-      )}
+        {!token && (
+          <CHeaderNavItem className="px-3">
+            <CHeaderNavLink to="/login">Login</CHeaderNavLink>
+          </CHeaderNavItem>
+        )}
+        {token && <TheHeaderDropdown />}
+      </CHeaderNav>
 
-      <CSubheader className="px-3 justify-content-between">
+      {/* <CSubheader className="px-3 justify-content-between">
         <CBreadcrumbRouter
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={[...common, ...user, ...admin]}
         />
-        {/* <div className="d-md-down-none mfe-2 c-subheader-nav">
+        <div className="d-md-down-none mfe-2 c-subheader-nav">
           <CLink className="c-subheader-nav-link" href="#">
             <CIcon name="cil-speech" alt="Settings" />
           </CLink>
@@ -113,8 +116,8 @@ const TheHeader = () => {
             <CIcon name="cil-settings" alt="Settings" />
             &nbsp;Settings
           </CLink>
-        </div> */}
-      </CSubheader>
+        </div>
+      </CSubheader> */}
     </CHeader>
   );
 };

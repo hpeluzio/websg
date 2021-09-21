@@ -4,6 +4,7 @@ import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 
 import { colors } from 'src/styles';
 import trevo from '../assets/icons/trevo.svg';
+import trevo_full from '../assets/icons/trevo_full.svg';
 
 import {
   CCreateElement,
@@ -53,7 +54,7 @@ const TheSidebar = () => {
           className="c-sidebar-brand-full"
           name="logo-negative"
           height={35}
-          src={trevo}
+          src={trevo_full}
         />
         <CIcon
           className="c-sidebar-brand-minimized"

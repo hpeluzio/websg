@@ -1,10 +1,14 @@
-import React from 'react';
+// import React from 'react';
 
-const Users = React.lazy(() => import('../views/users/Users'));
-const Raffles = React.lazy(() => import('../views/admin/raffles/Raffles'));
-const Detail = React.lazy(() =>
-  import('../views/admin/rafflesDetail/RafflesDetail'),
-);
+import Users from '../views/users/Users';
+import Raffles from '../views/admin/raffles/Raffles';
+import Detail from '../views/admin/rafflesDetail/RafflesDetail';
+
+// const Users = React.lazy(() => import('../views/users/Users'));
+// const Raffles = React.lazy(() => import('../views/admin/raffles/Raffles'));
+// const Detail = React.lazy(() =>
+//   import('../views/admin/rafflesDetail/RafflesDetail'),
+// );
 
 const routes = [
   {

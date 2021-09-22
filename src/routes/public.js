@@ -1,8 +1,12 @@
-import React from 'react';
+// import React from 'react';
 
-const Home = React.lazy(() => import('../views/home/Home'));
-const Blog = React.lazy(() => import('../views/blog/Blog'));
-const Login = React.lazy(() => import('../views/login/Login'));
+import Home from '../views/home/Home';
+import Blog from '../views/blog/Blog';
+import Login from '../views/login/Login';
+
+// const Home = React.lazy(() => import('../views/home/Home'));
+// const Blog = React.lazy(() => import('../views/blog/Blog'));
+// const Login = React.lazy(() => import('../views/login/Login'));
 
 const routes = [
   { path: '/', exact: true, name: '' },

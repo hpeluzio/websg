@@ -1,7 +1,10 @@
-import React from 'react';
+// import React from 'react';
 
-const Raffles = React.lazy(() => import('../views/raffles/Raffles'));
-const Detail = React.lazy(() => import('../views/rafflesDetail/RafflesDetail'));
+import Raffles from '../views/raffles/Raffles';
+import Detail from '../views/rafflesDetail/RafflesDetail';
+
+// const Raffles = React.lazy(() => import('../views/raffles/Raffles'));
+// const Detail = React.lazy(() => import('../views/rafflesDetail/RafflesDetail'));
 
 const routes = [
   {

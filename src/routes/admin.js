@@ -1,23 +1,27 @@
 import React from 'react';
 
+const Users = React.lazy(() => import('../views/users/Users'));
+const Raffles = React.lazy(() => import('../views/admin/raffles/Raffles'));
+const Detail = React.lazy(() =>
+  import('../views/admin/rafflesDetail/RafflesDetail'),
+);
+
 const routes = [
   {
     path: '/admin/users',
     name: 'Users',
-    component: React.lazy(() => import('../views/users/Users')),
+    component: Users,
   },
   {
     path: '/admin/raffles',
     exact: true,
     name: 'Raffles Admin',
-    component: React.lazy(() => import('../views/admin/raffles/Raffles')),
+    component: Raffles,
   },
   {
     path: '/admin/raffles/:id',
     name: 'Raffles Detail Admin',
-    component: React.lazy(() =>
-      import('../views/admin/rafflesDetail/RafflesDetail'),
-    ),
+    component: Detail,
   },
 ];
 

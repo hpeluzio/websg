@@ -155,7 +155,7 @@ const Login = () => {
                 style={{ width: '44%', background: colors.primaryDark }}>
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Diamante Beneficente</h2>
+                    <h2>Bolão da Sorte</h2>
                     <p>
                       Seja muito bem vindo ao Diamante Beneficente Web. Neste
                       site você pode salvar todas as informações para

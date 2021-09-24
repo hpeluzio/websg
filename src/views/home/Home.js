@@ -1,12 +1,29 @@
 import React from 'react';
 import {} from '@coreui/react';
 
-import { Container, Container2 } from './styles';
+import {
+  Container,
+  Content,
+  Column1,
+  Column2,
+  LogoImage,
+  Welcome,
+  Contact,
+} from './styles';
 
 const Home = () => {
   return (
     <Container>
-      <Container2></Container2>
+      <Content>
+        <Column1>
+          <Welcome>Sejam bem vindos ao Bolão da Sorte!</Welcome>
+          <Contact>Contato: contato@bolaodasorte.online</Contact>
+          <Contact>ou bolaodasorteonline@gmail.com</Contact>
+        </Column1>
+        <Column2>
+          <LogoImage />
+        </Column2>
+      </Content>
     </Container>
   );
 };

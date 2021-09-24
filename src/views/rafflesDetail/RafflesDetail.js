@@ -29,9 +29,9 @@ const RafflesDetail = props => {
     loadRaffle();
   }, [loadRaffle]);
 
-  useEffect(() => {
-    console.log(raffle);
-  }, [raffle]);
+  // useEffect(() => {
+  //   console.log(raffle);
+  // }, [raffle]);
 
   const statusHandler = useCallback(status => {
     if (status === 'notchecked') {

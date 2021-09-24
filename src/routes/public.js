@@ -2,7 +2,7 @@
 
 import Home from '../views/home/Home';
 import Blog from '../views/blog/Blog';
-import Login from '../views/login/Login';
+import Login from '../views/pages/login/Login';
 
 // const Home = React.lazy(() => import('../views/home/Home'));
 // const Blog = React.lazy(() => import('../views/blog/Blog'));
@@ -15,11 +15,11 @@ const routes = [
     name: 'Home',
     component: Home,
   },
-  {
-    path: '/blog',
-    name: 'Blog',
-    component: Blog,
-  },
+  // {
+  //   path: '/blog',
+  //   name: 'Blog',
+  //   component: Blog,
+  // },
   {
     path: '/login',
     name: 'Login',

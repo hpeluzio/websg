@@ -29,9 +29,9 @@ const RafflesDetail = props => {
     loadRaffle();
   }, [loadRaffle]);
 
-  useEffect(() => {
-    console.log(raffle);
-  }, [raffle]);
+  // useEffect(() => {
+  //   console.log(raffle);
+  // }, [raffle]);
 
   const statusHandler = useCallback(status => {
     if (status === 'notchecked') {
@@ -117,7 +117,7 @@ const RafflesDetail = props => {
         <CDataTable
           items={games}
           fields={fields}
-          // columnFilter
+          columnFilter
           tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
           // footer
           itemsPerPageSelect={{ label: 'Items por página' }}

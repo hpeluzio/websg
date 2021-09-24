@@ -20,7 +20,7 @@ const RafflesDetail = props => {
   let { id } = useParams();
 
   const loadRaffle = useCallback(async () => {
-    const _response = await RaffleService.detail({ id });
+    const _response = await RaffleService.detailAdmin({ id });
     setRaffle(_response.data);
     setGames(_response.data.games);
   }, [id]);
@@ -28,6 +28,10 @@ const RafflesDetail = props => {
   useEffect(() => {
     loadRaffle();
   }, [loadRaffle]);
+
+  useEffect(() => {
+    console.log(raffle);
+  }, [raffle]);
 
   const statusHandler = useCallback(status => {
     if (status === 'notchecked') {

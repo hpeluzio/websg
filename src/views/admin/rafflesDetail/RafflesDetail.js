@@ -53,6 +53,16 @@ const RafflesDetail = props => {
     } else return numbers;
   }, []);
 
+  const checkWonColor = useCallback(won => {
+    if (won === 'Sim') {
+      return <div style={{ color: 'blue' }}>Sorteado</div>;
+    }
+    if (won === 'Não') {
+      return <div style={{ color: 'red' }}>Não</div>;
+    }
+    return <div>-</div>;
+  }, []);
+
   const fields = [
     { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
@@ -139,6 +149,7 @@ const RafflesDetail = props => {
                 {moment(item.payment.created_at).format('DD/MM/YY, H:mm:ss')}
               </td>
             ),
+            won: item => <td>{checkWonColor(item.won)}</td>,
           }}
         />
       </Container>

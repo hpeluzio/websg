@@ -145,14 +145,6 @@ const RafflesDetail = props => {
               <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
             ),
             won: item => <td>{checkWonColor(item.won)}</td>,
-            // status: item => <td>{statusHandler(item.status)}</td>,
-            // payment_id: item => <td>{item.payment.id}</td>,
-            // type: item => <td>{item.payment.type}</td>,
-            // payment_date: item => (
-            //   <td>
-            //     {moment(item.payment.created_at).format('DD/MM/YY, H:mm:ss')}
-            //   </td>
-            // ),
           }}
         />
       </Container>

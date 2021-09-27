@@ -237,12 +237,10 @@ const RafflesDetail = props => {
             details: (item, index) => {
               return (
                 <CCollapse show={details.includes(index)}>
-                  <CCardBody>
-                    <PaymentCollapse
-                      payment_id={item.payment.id}
-                      show={details.includes(index)}
-                    />
-                  </CCardBody>
+                  <PaymentCollapse
+                    payment_id={item.payment.id}
+                    show={details.includes(index)}
+                  />
                 </CCollapse>
               );
             },

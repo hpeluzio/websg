@@ -11,9 +11,11 @@ export const Container = styled.div`
   flex-direction: column;
   border-style: solid;
   border-color: ${colors.lightGray};
-  background: ${colors.white};
-  padding: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
   border-width: 0.1rem;
+  margin: 0.5rem;
+  background: ${colors.white};
 `;
 
 export const RaffleContent = styled.div`
@@ -32,10 +34,10 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   border-color: ${colors.lightGray};
-  background: ${colors.white};
   /* padding: 0.25rem; */
   /* border-width: 0.1rem;
   border-radius: 0.5rem; */
+  background: ${colors.white};
 `;
 
 export const Column = styled.div`
@@ -55,12 +57,10 @@ export const Text = styled.div`
   flex: 1;
   flex-direction: row;
   align-self: stretch;
-  border-style: solid;
-  border-color: ${colors.lightGray};
   padding: 0.5rem;
-  border-width: 0.1rem;
   border-radius: 0.5rem;
   font-weight: bold;
+  text-align: center;
   background: ${colors.lightGray};
 `;
 
@@ -74,6 +74,22 @@ export const Text2 = styled.div`
   padding: 0.5rem;
   border-width: 0.1rem;
   border-radius: 0.5rem;
+  /* font-weight: bold; */
+  color: ${props => props.color};
+  background: ${colors.lightGray};
+`;
+
+export const TextStatus = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-self: stretch;
+  border-style: solid;
+  border-color: ${colors.lightGray};
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
   /* font-weight: bold; */
   color: ${props => props.color};
   background: ${colors.lightGray};
@@ -95,26 +111,6 @@ export const NumbersContainer = styled.div`
   border-radius: 0.5rem;
   /* font-weight: bold; */
   background: ${colors.lightGray};
-`;
-
-export const Number = styled.div`
-  display: flex;
-  /* flex: 1; */
-  /* flex-wrap: wrap; */
-  /* max-width: 10rem; */
-  margin: 0.05rem;
-  height: 1.3rem;
-  width: 1.3rem;
-  align-items: center;
-  justify-content: center;
-
-  /* border-style: solid; */
-  /* border-color: ${colors.primary}; */
-  /* padding: 0.5rem; */
-  /* border-width: 0.1rem; */
-  border-radius: 0.5rem;
-  /* font-weight: bold; */
-  background: ${colors.white};
 `;
 
 export const LoaderContainer = styled.div`

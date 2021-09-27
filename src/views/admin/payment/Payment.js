@@ -83,6 +83,16 @@ const Payment = () => {
             </Column2>
           </Row>
         )}
+        {payment && (
+          <Row>
+            <Column>
+              <Text>Outras info úteis</Text>
+            </Column>
+            <Column2>
+              <pre>{JSON.stringify(payment, null, 2)}</pre>
+            </Column2>
+          </Row>
+        )}
       </RaffleContent>
     </Container>
   );

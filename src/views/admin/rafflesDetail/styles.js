@@ -96,20 +96,13 @@ export const NumbersContainer = styled.div`
 
 export const Number = styled.div`
   display: flex;
-  /* flex: 1; */
-  /* flex-wrap: wrap; */
-  /* max-width: 10rem; */
   margin: 0.05rem;
   height: 1.3rem;
   width: 1.3rem;
   align-items: center;
   justify-content: center;
-
-  /* border-style: solid; */
-  /* border-color: ${colors.primary}; */
-  /* padding: 0.5rem; */
-  /* border-width: 0.1rem; */
-  border-radius: 0.5rem;
-  /* font-weight: bold; */
+  border-radius: 0.35rem;
+  font-weight: bold;
+  color: ${colors.mediumGray};
   background: ${colors.white};
 `;

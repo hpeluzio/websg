@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import moment from 'moment';
 import PaymentService from 'src/services/PaymentService';
 
 import {
@@ -11,6 +9,7 @@ import {
   Column2,
   Text,
   Text2,
+  TextStatus,
   LoaderContainer,
   Loader,
 } from './styles';
@@ -69,7 +68,9 @@ const PaymentCollapse = ({ payment_id, show }) => {
                 <Text>Status</Text>
               </Column>
               <Column2>
-                <Text2 color={getBadge(payment.status)}>{payment.status}</Text2>
+                <TextStatus color={getBadge(payment.status)}>
+                  {payment.status}
+                </TextStatus>
               </Column2>
             </Row>
           )}
@@ -100,16 +101,6 @@ const PaymentCollapse = ({ payment_id, show }) => {
               </Column>
               <Column2>
                 <Text2>{payment.transaction_amount}</Text2>
-              </Column2>
-            </Row>
-          )}
-          {payment.status_detail && (
-            <Row>
-              <Column>
-                <Text>taxes_amount</Text>
-              </Column>
-              <Column2>
-                <Text2>{payment.taxes_amount}</Text2>
               </Column2>
             </Row>
           )}

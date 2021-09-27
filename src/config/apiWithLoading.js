@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import store from 'src/redux/store';
+import { setLoading } from 'src/redux/actions/layout/layoutActions';
 
 var instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -12,6 +13,9 @@ instance.defaults.headers['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(
   async config => {
+    // Loading to true
+    store.dispatch(setLoading({ loading: true }));
+
     const state = store.getState();
     const token = await state.session.token;
 
@@ -22,15 +26,22 @@ instance.interceptors.request.use(
     return config;
   },
   async error => {
+    // Loading to false
+    store.dispatch(setLoading({ loading: false }));
     return Promise.reject(error);
   },
 );
 
 instance.interceptors.response.use(
   async response => {
+    // Loading to false
+    store.dispatch(setLoading({ loading: false }));
+
     return response;
   },
   async error => {
+    // Loading to false
+    store.dispatch(setLoading({ loading: false }));
     return Promise.reject(error);
   },
 );

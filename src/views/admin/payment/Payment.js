@@ -33,14 +33,56 @@ const Payment = () => {
   return (
     <Container>
       <RaffleContent>
-        <Row>
-          <Column>
-            <Text>Identificador:</Text>
-          </Column>
-          <Column2>
-            <Text2>{0}</Text2>
-          </Column2>
-        </Row>
+        {payment.id && (
+          <Row>
+            <Column>
+              <Text>Identificador</Text>
+            </Column>
+            <Column2>
+              <Text2>{payment.id}</Text2>
+            </Column2>
+          </Row>
+        )}
+        {payment.status_detail && (
+          <Row>
+            <Column>
+              <Text>Identificador</Text>
+            </Column>
+            <Column2>
+              <Text2>{payment.status_detail}</Text2>
+            </Column2>
+          </Row>
+        )}
+        {payment.status_detail && (
+          <Row>
+            <Column>
+              <Text>Nome no cartão</Text>
+            </Column>
+            <Column2>
+              <Text2>{payment.card.cardholder.name}</Text2>
+            </Column2>
+          </Row>
+        )}
+        {payment.status_detail && (
+          <Row>
+            <Column>
+              <Text>Valor</Text>
+            </Column>
+            <Column2>
+              <Text2>{payment.transaction_amount}</Text2>
+            </Column2>
+          </Row>
+        )}
+        {payment.status_detail && (
+          <Row>
+            <Column>
+              <Text>taxes_amount</Text>
+            </Column>
+            <Column2>
+              <Text2>{payment.taxes_amount}</Text2>
+            </Column2>
+          </Row>
+        )}
       </RaffleContent>
     </Container>
   );

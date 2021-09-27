@@ -1,9 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { CDataTable } from '@coreui/react';
+
 import moment from 'moment';
 
+import {
+  CDataTable,
+  CBadge,
+  CCardBody,
+  CButton,
+  CCollapse,
+} from '@coreui/react';
+
 import RaffleService from 'src/services/RaffleService';
+
+import PaymentCollapse from 'src/views/admin/paymentCollapse/PaymentCollapse';
+
 import {
   Container,
   RaffleContent,
@@ -20,6 +31,7 @@ const RafflesDetail = props => {
   const history = useHistory();
 
   const [raffle, setRaffle] = useState({});
+  const [details, setDetails] = useState([]);
   const [games, setGames] = useState([]);
   let { id } = useParams();
 
@@ -79,16 +91,28 @@ const RafflesDetail = props => {
     );
   }, []);
 
-  // const onRowClicked = useCallback(
-  //   item => {
+  // const onClickPaymentId = useCallback(
+  //   payment_id => {
+  //     console.log('onClickPaymentId');
   //     history.push({
-  //       pathname: `/admin/raffles/${item.id}`,
+  //       pathname: `/admin/payment/${payment_id}`,
   //       // search: `?id=${item.id}`,
   //       // state: { detail: response.data }
   //     });
   //   },
   //   [history],
   // );
+
+  const toggleDetails = index => {
+    const position = details.indexOf(index);
+    let newDetails = details.slice();
+    if (position !== -1) {
+      newDetails.splice(position, 1);
+    } else {
+      newDetails = [...details, index];
+    }
+    setDetails(newDetails);
+  };
 
   const fields = [
     { key: 'id', _style: { width: '5%' }, label: 'id' },
@@ -100,6 +124,13 @@ const RafflesDetail = props => {
     { key: 'type', label: 'Tipo' },
     { key: 'payment_date', label: 'Data pgto' },
     { key: 'won', label: 'Sorteado' },
+    {
+      key: 'show_details',
+      label: '',
+      _style: { width: '1%' },
+      sorter: false,
+      filter: false,
+    },
   ];
 
   if (raffle)
@@ -174,6 +205,9 @@ const RafflesDetail = props => {
                 <a href={`/admin/payment/${item.payment.id}`}>
                   {item.payment.id}
                 </a>
+                {/* <button onPress={() => onClickPaymentId(item.payment.id)}>
+                  {item.payment.id}
+                </button> */}
               </td>
             ),
             type: item => <td>{item.payment.type}</td>,
@@ -184,6 +218,34 @@ const RafflesDetail = props => {
             ),
             won: item => <td>{checkWonColor(item.won)}</td>,
             numbers: item => <td>{treatNumbers(item.numbers)}</td>,
+            show_details: (item, index) => {
+              return (
+                <td className="py-2">
+                  <CButton
+                    color="primary"
+                    variant="outline"
+                    shape="square"
+                    size="sm"
+                    onClick={() => {
+                      toggleDetails(index);
+                    }}>
+                    {details.includes(index) ? 'Esconder' : 'Detalhes'}
+                  </CButton>
+                </td>
+              );
+            },
+            details: (item, index) => {
+              return (
+                <CCollapse show={details.includes(index)}>
+                  <CCardBody>
+                    <PaymentCollapse
+                      payment_id={item.payment.id}
+                      show={details.includes(index)}
+                    />
+                  </CCardBody>
+                </CCollapse>
+              );
+            },
           }}
         />
       </Container>

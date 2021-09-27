@@ -1,4 +1,4 @@
-import api from 'src/config/api';
+import api from 'src/config/apiWithLoading';
 
 class RaffleService {
   async index() {

@@ -76,6 +76,22 @@ export const Text2 = styled.div`
   background: ${colors.lightGray};
 `;
 
+export const TextStatus = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-self: stretch;
+  border-style: solid;
+  border-color: ${colors.lightGray};
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  /* font-weight: bold; */
+  color: ${props => props.color};
+  background: ${colors.lightGray};
+`;
+
 export const NumbersContainer = styled.div`
   display: flex;
   flex: 1;

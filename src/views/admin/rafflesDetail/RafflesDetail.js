@@ -58,7 +58,7 @@ const RafflesDetail = props => {
       return <div style={{ color: 'blue' }}>Sorteado</div>;
     }
     if (won === 'Não') {
-      return <div style={{ color: 'red' }}>Não</div>;
+      return <div>Não</div>;
     }
     return <div>-</div>;
   }, []);
@@ -79,14 +79,14 @@ const RafflesDetail = props => {
     return (
       <Container>
         <RaffleContent>
-          {/* <Row>
-          <Column>
-            <Text>id:</Text>
-          </Column>
-          <Column>
-            <Text2>{raffle.id}</Text2>
-          </Column>
-        </Row> */}
+          <Row>
+            <Column>
+              <Text>Identificador:</Text>
+            </Column>
+            <Column2>
+              <Text2>{raffle.id}</Text2>
+            </Column2>
+          </Row>
 
           <Row>
             <Column>

@@ -63,7 +63,13 @@ const TheSidebar = () => {
           src={trevo}
         />
       </CSidebarBrand>
-      <CSidebarNav style={{ background: colors.primaryDark }}>
+      <CSidebarNav
+        style={{
+          background: colors.primaryDark,
+          // 'a:hover': {
+          //   background: 'green',
+          // },
+        }}>
         <CCreateElement
           items={nav()}
           components={{

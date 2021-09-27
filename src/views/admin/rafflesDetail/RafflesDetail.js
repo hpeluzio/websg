@@ -62,6 +62,7 @@ const RafflesDetail = props => {
     { key: 'payment_id', label: 'Pagamento' },
     { key: 'type', label: 'Tipo' },
     { key: 'payment_date', label: 'Data pgto' },
+    { key: 'won', label: 'Sorteado' },
   ];
 
   if (raffle)

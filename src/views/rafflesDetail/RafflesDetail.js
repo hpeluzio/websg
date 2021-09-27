@@ -14,6 +14,8 @@ import {
   Text2,
 } from './styles';
 
+// import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
+
 const RafflesDetail = props => {
   const [raffle, setRaffle] = useState({});
   const [games, setGames] = useState([]);
@@ -53,12 +55,23 @@ const RafflesDetail = props => {
     } else return numbers;
   }, []);
 
+  const checkWonColor = useCallback(won => {
+    if (won === 'Sim') {
+      return <div style={{ color: 'blue' }}>Sorteado</div>;
+    }
+    if (won === 'Não') {
+      return <div style={{ color: 'red' }}>Não</div>;
+    }
+    return <div>-</div>;
+  }, []);
+
   const fields = [
     // { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
     { key: 'numbers', label: 'Números' },
     // { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
+    { key: 'won', label: 'Sorteado' },
     // { key: 'payment_id', label: 'Pagamento' },
     // { key: 'type', label: 'Tipo' },
     // { key: 'payment_date', label: 'Data pgto' },
@@ -125,19 +138,21 @@ const RafflesDetail = props => {
           hover
           sorter
           pagination
+          // noItemsViewSlot
           // onRowClick={item => onRowClicked(item)}
           scopedSlots={{
             created_at: item => (
               <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
             ),
-            status: item => <td>{statusHandler(item.status)}</td>,
-            payment_id: item => <td>{item.payment.id}</td>,
-            type: item => <td>{item.payment.type}</td>,
-            payment_date: item => (
-              <td>
-                {moment(item.payment.created_at).format('DD/MM/YY, H:mm:ss')}
-              </td>
-            ),
+            won: item => <td>{checkWonColor(item.won)}</td>,
+            // status: item => <td>{statusHandler(item.status)}</td>,
+            // payment_id: item => <td>{item.payment.id}</td>,
+            // type: item => <td>{item.payment.type}</td>,
+            // payment_date: item => (
+            //   <td>
+            //     {moment(item.payment.created_at).format('DD/MM/YY, H:mm:ss')}
+            //   </td>
+            // ),
           }}
         />
       </Container>

@@ -61,16 +61,7 @@ const Payment = () => {
             </Column2>
           </Row>
         )}
-        {payment.status_detail && (
-          <Row>
-            <Column>
-              <Text>Identificador</Text>
-            </Column>
-            <Column2>
-              <Text2>{payment.status_detail}</Text2>
-            </Column2>
-          </Row>
-        )}
+
         {payment.status_detail && (
           <Row>
             <Column>

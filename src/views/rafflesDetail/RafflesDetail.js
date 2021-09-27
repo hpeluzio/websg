@@ -12,6 +12,8 @@ import {
   Column2,
   Text,
   Text2,
+  NumbersContainer,
+  Number,
 } from './styles';
 
 // import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
@@ -65,6 +67,18 @@ const RafflesDetail = props => {
     return <div>-</div>;
   }, []);
 
+  const treatNumbers = useCallback(numbers => {
+    const numbersTreated = numbers.split(',');
+    console.log(numbersTreated);
+
+    return (
+      <NumbersContainer>
+        {numbersTreated.map(n => {
+          return <Number>{n}</Number>;
+        })}
+      </NumbersContainer>
+    );
+  }, []);
   const fields = [
     // { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
@@ -145,6 +159,7 @@ const RafflesDetail = props => {
               <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
             ),
             won: item => <td>{checkWonColor(item.won)}</td>,
+            numbers: item => <td>{treatNumbers(item.numbers)}</td>,
           }}
         />
       </Container>

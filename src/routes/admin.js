@@ -3,6 +3,7 @@
 import Users from '../views/users/Users';
 import Raffles from '../views/admin/raffles/Raffles';
 import Detail from '../views/admin/rafflesDetail/RafflesDetail';
+import Payment from '../views/admin/payment/Payment.js';
 
 // const Users = React.lazy(() => import('../views/users/Users'));
 // const Raffles = React.lazy(() => import('../views/admin/raffles/Raffles'));
@@ -26,6 +27,11 @@ const routes = [
     path: '/admin/raffles/:id',
     name: 'Raffles Detail Admin',
     component: Detail,
+  },
+  {
+    path: '/admin/payment/:id',
+    name: 'Payment Details',
+    component: Payment,
   },
 ];
 

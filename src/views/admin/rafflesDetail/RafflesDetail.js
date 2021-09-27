@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { CDataTable } from '@coreui/react';
 import moment from 'moment';
 
@@ -12,9 +12,13 @@ import {
   Column2,
   Text,
   Text2,
+  NumbersContainer,
+  Number,
 } from './styles';
 
 const RafflesDetail = props => {
+  const history = useHistory();
+
   const [raffle, setRaffle] = useState({});
   const [games, setGames] = useState([]);
   let { id } = useParams();
@@ -62,6 +66,29 @@ const RafflesDetail = props => {
     }
     return <div>-</div>;
   }, []);
+
+  const treatNumbers = useCallback(numbers => {
+    const numbersTreated = numbers.split(',');
+
+    return (
+      <NumbersContainer>
+        {numbersTreated.map(n => {
+          return <Number>{n}</Number>;
+        })}
+      </NumbersContainer>
+    );
+  }, []);
+
+  // const onRowClicked = useCallback(
+  //   item => {
+  //     history.push({
+  //       pathname: `/admin/raffles/${item.id}`,
+  //       // search: `?id=${item.id}`,
+  //       // state: { detail: response.data }
+  //     });
+  //   },
+  //   [history],
+  // );
 
   const fields = [
     { key: 'id', _style: { width: '5%' }, label: 'id' },
@@ -142,7 +169,13 @@ const RafflesDetail = props => {
               <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
             ),
             status: item => <td>{statusHandler(item.status)}</td>,
-            payment_id: item => <td>{item.payment.id}</td>,
+            payment_id: item => (
+              <td>
+                <a href={`/admin/payment/${item.payment.id}`}>
+                  {item.payment.id}
+                </a>
+              </td>
+            ),
             type: item => <td>{item.payment.type}</td>,
             payment_date: item => (
               <td>
@@ -150,6 +183,7 @@ const RafflesDetail = props => {
               </td>
             ),
             won: item => <td>{checkWonColor(item.won)}</td>,
+            numbers: item => <td>{treatNumbers(item.numbers)}</td>,
           }}
         />
       </Container>

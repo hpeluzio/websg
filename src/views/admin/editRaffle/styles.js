@@ -2,50 +2,36 @@ import styled from 'styled-components';
 
 import { colors } from 'src/styles';
 
+import Spinner from 'src/assets/spinner.svg';
+
 export const Container = styled.div`
-  /* height: 20rem;
-  width: 20rem; */
   display: flex;
   flex-direction: column;
+  align-self: center;
   border-style: solid;
   border-color: ${colors.lightGray};
-  background: ${colors.white};
+  border-radius: 2rem;
   padding: 0.5rem;
   border-width: 0.1rem;
+  margin: 1rem;
+  padding: 1rem;
+  background: ${colors.white};
+  /* background: blue; */
 `;
 
 export const RaffleContent = styled.div`
-  /* height: 20rem;
-  width: 20rem; */
   display: flex;
   flex-direction: column;
-  /* border-style: solid; */
-  /* border-color: ${colors.lightGray}; */
   background: ${colors.white};
-  /* padding: 0.5rem; */
-  /* border-width: 0.1rem; */
 `;
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border-color: ${colors.lightGray};
   background: ${colors.white};
-  /* padding: 0.25rem; */
-  /* border-width: 0.1rem;
-  border-radius: 0.5rem; */
-`;
-
-export const Column = styled.div`
-  display: flex;
-  flex: 1;
-  padding: 0.1rem;
-`;
-
-export const Column2 = styled.div`
-  display: flex;
-  flex: 4;
-  padding: 0.1rem;
 `;
 
 export const ColumnEditForm = styled.div`
@@ -56,41 +42,11 @@ export const ColumnEditForm = styled.div`
   padding: 0.1rem;
 `;
 
-export const Text = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  align-self: stretch;
-  border-style: solid;
-  border-color: ${colors.lightGray};
-  padding: 0.5rem;
-  border-width: 0.1rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  background: ${colors.lightGray};
-`;
-
-export const Text2 = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  align-self: stretch;
-  border-style: solid;
-  border-color: ${colors.lightGray};
-  padding: 0.5rem;
-  border-width: 0.1rem;
-  border-radius: 0.5rem;
-  /* font-weight: bold; */
-  background: ${colors.lightGray};
-`;
-
 export const NumbersContainer = styled.div`
   display: flex;
   flex: 1;
   flex-wrap: wrap;
   max-width: 16rem;
-  /* flex-direction: row; */
-  /* align-self: stretch; */
   align-items: center;
   justify-content: space-around;
   border-style: solid;
@@ -98,7 +54,6 @@ export const NumbersContainer = styled.div`
   padding: 0.5rem;
   border-width: 0.1rem;
   border-radius: 0.5rem;
-  /* font-weight: bold; */
   background: ${colors.lightGray};
 `;
 
@@ -115,12 +70,37 @@ export const Number = styled.div`
   background: ${colors.white};
 `;
 
-export const AddButton = styled.button`
+export const RowButton = styled.div`
   display: flex;
+  flex-direction: row;
+  border-color: ${colors.lightGray};
+  align-items: center;
+  justify-content: center;
+  background: ${colors.white};
+  padding: 0.5rem;
+  /* background: red; */
+`;
+
+export const CancelButton = styled.button`
   margin: 0.05rem;
   padding: 1rem;
-  height: 3rem;
-  /* width: 7rem; */
+  height: 3.5rem;
+  width: 7rem;
+  border: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.35rem;
+  font-weight: bold;
+  margin-right: 3rem;
+  color: ${colors.white};
+  background: tomato;
+`;
+
+export const SaveButton = styled.button`
+  margin: 0.05rem;
+  padding: 1rem;
+  height: 3.5rem;
+  width: 7rem;
   border: 0;
   align-items: center;
   justify-content: center;
@@ -130,17 +110,27 @@ export const AddButton = styled.button`
   background: ${colors.primary};
 `;
 
-export const EditButton = styled.button`
-  display: flex;
+export const NumberInput = styled.input`
   margin: 0.05rem;
   padding: 1rem;
-  height: 3rem;
-  /* width: 7rem; */
-  border: 0;
+  height: 3.5rem;
+  width: 4.5rem;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-size: 1.6rem;
+  margin-right: 0.25rem;
+  color: ${colors.primary};
   border-radius: 0.35rem;
-  font-weight: bold;
-  color: ${colors.white};
-  background: ${colors.secondaryWarning};
+  border-style: solid;
+  border-color: ${colors.lightGray};
+  border-width: 0.1rem;
+  background: ${colors.white};
+`;
+
+export const Loader = styled.img.attrs({
+  src: Spinner,
+})`
+  height: 6rem;
+  /* background-color: blue; */
 `;

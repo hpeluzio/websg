@@ -1,4 +1,4 @@
-import api from 'src/config/apiWithLoading';
+import api from 'src/config/api';
 
 class RaffleService {
   async index() {
@@ -22,6 +22,15 @@ class RaffleService {
   async detailAdmin({ id }) {
     const _response = await api
       .get(`/raffle/admin/${id}`)
+      .then(r => r)
+      .catch(e => e.response);
+    // console.log(_response);
+    return _response;
+  }
+
+  async updateNumbers({ id, numbers }) {
+    const _response = await api
+      .patch(`/raffle/${id}`, { numbers })
       .then(r => r)
       .catch(e => e.response);
     // console.log(_response);

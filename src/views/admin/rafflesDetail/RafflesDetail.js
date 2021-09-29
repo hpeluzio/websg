@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import moment from 'moment';
 
 import {
   CDataTable,
-  CBadge,
-  CCardBody,
+  // CBadge,
+  // CCardBody,
   CButton,
   CCollapse,
 } from '@coreui/react';
@@ -15,25 +15,33 @@ import RaffleService from 'src/services/RaffleService';
 
 import PaymentCollapse from 'src/views/admin/paymentCollapse/PaymentCollapse';
 
+import EditRaffle from '../editRaffle/EditRaffle';
+
 import {
   Container,
   RaffleContent,
   Row,
   Column,
   Column2,
+  ColumnEditForm,
   Text,
   Text2,
   NumbersContainer,
   Number,
+  AddButton,
+  EditButton,
 } from './styles';
 
 const RafflesDetail = props => {
-  const history = useHistory();
-
   const [raffle, setRaffle] = useState({});
   const [details, setDetails] = useState([]);
   const [games, setGames] = useState([]);
+  const [showEditRaffle, setShowEditRaffle] = useState(false);
   let { id } = useParams();
+
+  // useEffect(() => {
+  //   console.log(raffle);
+  // }, [raffle]);
 
   const loadRaffle = useCallback(async () => {
     const _response = await RaffleService.detailAdmin({ id });
@@ -43,11 +51,7 @@ const RafflesDetail = props => {
 
   useEffect(() => {
     loadRaffle();
-  }, [loadRaffle]);
-
-  // useEffect(() => {
-  //   console.log(raffle);
-  // }, [raffle]);
+  }, [loadRaffle, raffle.numbers]);
 
   const statusHandler = useCallback(status => {
     if (status === 'notchecked') {
@@ -90,18 +94,6 @@ const RafflesDetail = props => {
       </NumbersContainer>
     );
   }, []);
-
-  // const onClickPaymentId = useCallback(
-  //   payment_id => {
-  //     console.log('onClickPaymentId');
-  //     history.push({
-  //       pathname: `/admin/payment/${payment_id}`,
-  //       // search: `?id=${item.id}`,
-  //       // state: { detail: response.data }
-  //     });
-  //   },
-  //   [history],
-  // );
 
   const toggleDetails = index => {
     const position = details.indexOf(index);
@@ -175,20 +167,46 @@ const RafflesDetail = props => {
 
           <Row>
             <Column>
-              <Text>Numeros:</Text>{' '}
+              <Text>Números:</Text>{' '}
             </Column>
             <Column2>
               <Text2>{numbersHandler(raffle.numbers)}</Text2>
             </Column2>
           </Row>
-        </RaffleContent>
 
+          {!showEditRaffle && (
+            <Row>
+              <ColumnEditForm>
+                {raffle.numbers === null && (
+                  <AddButton onClick={() => setShowEditRaffle(true)}>
+                    Adicionar números da mega {raffle.name}
+                  </AddButton>
+                )}
+                {raffle.numbers !== null && (
+                  <EditButton onClick={() => setShowEditRaffle(true)}>
+                    Editar números da MEGA {raffle.name}: {raffle.numbers}
+                  </EditButton>
+                )}
+              </ColumnEditForm>
+              {/* <Column2>
+              <Text2>{numbersHandler(raffle.numbers)}</Text2>
+            </Column2> */}
+            </Row>
+          )}
+        </RaffleContent>
+        {showEditRaffle && (
+          <EditRaffle
+            close={setShowEditRaffle}
+            raffle={raffle}
+            loadRaffle={loadRaffle}
+          />
+        )}
         <CDataTable
           items={games}
           fields={fields}
           columnFilter
           tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
-          // footer
+          footer
           itemsPerPageSelect={{ label: 'Items por página' }}
           itemsPerPage={20}
           hover

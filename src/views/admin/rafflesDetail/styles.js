@@ -60,6 +60,8 @@ export const Text = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
   align-self: stretch;
   border-style: solid;
   border-color: ${colors.lightGray};
@@ -74,6 +76,8 @@ export const Text2 = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
   align-self: stretch;
   border-style: solid;
   border-color: ${colors.lightGray};
@@ -119,8 +123,8 @@ export const Number = styled.div`
 export const AddButton = styled.button`
   display: flex;
   margin: 0.05rem;
-  padding: 1rem;
-  height: 3rem;
+  padding: 0.5rem;
+  /* height: 3rem; */
   /* width: 7rem; */
   border: 0;
   align-items: center;
@@ -134,8 +138,8 @@ export const AddButton = styled.button`
 export const EditButton = styled.button`
   display: flex;
   margin: 0.05rem;
-  padding: 1rem;
-  height: 3rem;
+  padding: 0.5rem;
+  /* height: 3rem; */
   /* width: 7rem; */
   border: 0;
   align-items: center;

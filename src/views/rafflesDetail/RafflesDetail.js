@@ -114,15 +114,6 @@ const RafflesDetail = props => {
     return (
       <Container>
         <RaffleContent>
-          {/* <Row>
-            <Column>
-              <Text>Identificador:</Text>
-            </Column>
-            <Column2>
-              <Text2>{raffle.id}</Text2>
-            </Column2>
-          </Row> */}
-
           <Row>
             <Column>
               <Text>Sorteio:</Text>{' '}
@@ -130,18 +121,12 @@ const RafflesDetail = props => {
             <Column2>
               <Text2>{raffle.name}</Text2>
             </Column2>
-          </Row>
-
-          <Row>
             <Column>
               <Text>Início:</Text>{' '}
             </Column>
             <Column2>
               <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
             </Column2>
-          </Row>
-
-          <Row>
             <Column>
               <Text>Término:</Text>{' '}
             </Column>

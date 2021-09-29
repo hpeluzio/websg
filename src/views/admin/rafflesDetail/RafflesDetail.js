@@ -11,6 +11,8 @@ import {
   CCollapse,
 } from '@coreui/react';
 
+import CIcon from '@coreui/icons-react';
+
 import RaffleService from 'src/services/RaffleService';
 
 import PaymentCollapse from 'src/views/admin/paymentCollapse/PaymentCollapse';
@@ -155,27 +157,18 @@ const RafflesDetail = props => {
             <Column2>
               <Text2>{raffle.id}</Text2>
             </Column2>
-          </Row>
-
-          <Row>
             <Column>
               <Text>Sorteio:</Text>{' '}
             </Column>
             <Column2>
               <Text2>{raffle.name}</Text2>
             </Column2>
-          </Row>
-
-          <Row>
             <Column>
               <Text>Início:</Text>{' '}
             </Column>
             <Column2>
               <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
             </Column2>
-          </Row>
-
-          <Row>
             <Column>
               <Text>Término:</Text>{' '}
             </Column>
@@ -191,19 +184,20 @@ const RafflesDetail = props => {
             <Column2>
               <Text2>{numbersHandler(raffle.numbers)}</Text2>
             </Column2>
-          </Row>
 
-          {!showEditRaffle && (
             <Row>
               <ColumnEditForm>
                 {raffle.numbers === null && (
-                  <AddButton onClick={() => setShowEditRaffle(true)}>
+                  <AddButton onClick={() => setShowEditRaffle(!showEditRaffle)}>
+                    <CIcon name="cil-pencil" className="mfe-2" />
                     Adicionar números da mega {raffle.name}
                   </AddButton>
                 )}
                 {raffle.numbers !== null && (
-                  <EditButton onClick={() => setShowEditRaffle(true)}>
-                    Editar números da MEGA {raffle.name}: {raffle.numbers}
+                  <EditButton
+                    onClick={() => setShowEditRaffle(!showEditRaffle)}>
+                    <CIcon name="cil-pencil" className="mfe-2" />
+                    Editar números da MEGA {raffle.name}
                   </EditButton>
                 )}
               </ColumnEditForm>
@@ -211,7 +205,7 @@ const RafflesDetail = props => {
               <Text2>{numbersHandler(raffle.numbers)}</Text2>
             </Column2> */}
             </Row>
-          )}
+          </Row>
         </RaffleContent>
         {showEditRaffle && (
           <EditRaffle

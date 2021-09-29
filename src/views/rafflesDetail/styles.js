@@ -80,7 +80,7 @@ export const NumbersContainer = styled.div`
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  max-width: 12rem;
+  max-width: 16rem;
   /* flex-direction: row; */
   /* align-self: stretch; */
   align-items: center;
@@ -104,5 +104,6 @@ export const Number = styled.div`
   border-radius: 0.35rem;
   font-weight: bold;
   color: ${colors.mediumGray};
-  background: ${colors.white};
+  color: ${props => (props.hit ? colors.white : colors.mediumGray)};
+  background: ${props => (props.hit ? colors.primary : colors.white)};
 `;

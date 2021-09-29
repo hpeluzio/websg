@@ -37,19 +37,19 @@ const RafflesDetail = props => {
   //   console.log(raffle);
   // }, [raffle]);
 
-  const statusHandler = useCallback(status => {
-    if (status === 'notchecked') {
-      return 'Não visualizado';
-    }
+  // const statusHandler = useCallback(status => {
+  //   if (status === 'notchecked') {
+  //     return 'Não visualizado';
+  //   }
 
-    if (status === 'checked') {
-      return 'Visualizado';
-    }
+  //   if (status === 'checked') {
+  //     return 'Visualizado';
+  //   }
 
-    if (status === 'received') {
-      return 'Pago';
-    }
-  }, []);
+  //   if (status === 'received') {
+  //     return 'Pago';
+  //   }
+  // }, []);
 
   const numbersHandler = useCallback(numbers => {
     if (numbers === null || numbers === undefined) {
@@ -67,18 +67,37 @@ const RafflesDetail = props => {
     return <div>-</div>;
   }, []);
 
-  const treatNumbers = useCallback(numbers => {
-    const numbersTreated = numbers.split(',');
-    console.log(numbersTreated);
+  const isThisNumberInRaffle = useCallback(
+    (number, raffleNumbers) => {
+      console.log(number);
+      console.log(raffle.numbers);
 
-    return (
-      <NumbersContainer>
-        {numbersTreated.map(n => {
-          return <Number>{n}</Number>;
-        })}
-      </NumbersContainer>
-    );
-  }, []);
+      if (raffleNumbers !== null) {
+        let raffleNumArray = raffle.numbers.split(',');
+        return raffleNumArray.includes(number);
+      }
+      return false;
+    },
+    [raffle],
+  );
+
+  const treatNumbers = useCallback(
+    numbers => {
+      const numbersTreated = numbers.split(',');
+
+      return (
+        <NumbersContainer>
+          {numbersTreated.map(n => {
+            return (
+              <Number hit={isThisNumberInRaffle(n, raffle.numbers)}>{n}</Number>
+            );
+          })}
+        </NumbersContainer>
+      );
+    },
+    [raffle.numbers, isThisNumberInRaffle],
+  );
+
   const fields = [
     // { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },

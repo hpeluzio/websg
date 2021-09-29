@@ -112,7 +112,8 @@ export const Number = styled.div`
   border-radius: 0.35rem;
   font-weight: bold;
   color: ${colors.mediumGray};
-  background: ${colors.white};
+  color: ${props => (props.hit ? colors.white : colors.mediumGray)};
+  background: ${props => (props.hit ? colors.primary : colors.white)};
 `;
 
 export const AddButton = styled.button`

@@ -83,17 +83,36 @@ const RafflesDetail = props => {
     return <div>-</div>;
   }, []);
 
-  const treatNumbers = useCallback(numbers => {
-    const numbersTreated = numbers.split(',');
+  const isThisNumberInRaffle = useCallback(
+    (number, raffleNumbers) => {
+      console.log(number);
+      console.log(raffle.numbers);
 
-    return (
-      <NumbersContainer>
-        {numbersTreated.map(n => {
-          return <Number>{n}</Number>;
-        })}
-      </NumbersContainer>
-    );
-  }, []);
+      if (raffleNumbers !== null) {
+        let raffleNumArray = raffle.numbers.split(',');
+        return raffleNumArray.includes(number);
+      }
+      return false;
+    },
+    [raffle],
+  );
+
+  const treatNumbers = useCallback(
+    numbers => {
+      const numbersTreated = numbers.split(',');
+
+      return (
+        <NumbersContainer>
+          {numbersTreated.map(n => {
+            return (
+              <Number hit={isThisNumberInRaffle(n, raffle.numbers)}>{n}</Number>
+            );
+          })}
+        </NumbersContainer>
+      );
+    },
+    [raffle.numbers, isThisNumberInRaffle],
+  );
 
   const toggleDetails = index => {
     const position = details.indexOf(index);
@@ -107,7 +126,7 @@ const RafflesDetail = props => {
   };
 
   const fields = [
-    { key: 'id', _style: { width: '5%' }, label: 'id' },
+    { key: 'id', _style: { width: '1%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
     { key: 'numbers', label: 'Números' },
     { key: 'status', label: 'Status' },
@@ -115,7 +134,7 @@ const RafflesDetail = props => {
     { key: 'payment_id', label: 'Pagamento' },
     { key: 'type', label: 'Tipo' },
     { key: 'payment_date', label: 'Data pgto' },
-    { key: 'won', label: 'Sorteado' },
+    { key: 'won', _style: { width: '5%' }, label: 'Sorteado' },
     {
       key: 'show_details',
       label: '',

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import RaffleService from 'src/services/RaffleService';
 
@@ -15,7 +14,6 @@ import {
 } from './styles';
 
 const EditRaffle = ({ close, raffle, loadRaffle }) => {
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [num1, setNum1] = useState('');
   const [num2, setNum2] = useState('');

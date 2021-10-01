@@ -127,6 +127,12 @@ const RafflesDetail = props => {
     setDetails(newDetails);
   };
 
+  const handleStatus = useCallback(status => {
+    if (status === 'approved') return 'Ok';
+    if (status === 'in_process') return 'Processando';
+    if (status === 'rejected') return 'Rejeitado';
+  }, []);
+
   const fields = [
     { key: 'id', _style: { width: '1%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
@@ -134,6 +140,7 @@ const RafflesDetail = props => {
     { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
     { key: 'payment_id', label: 'Pagamento' },
+    { key: 'pgtoStatus', label: 'Pgto' },
     { key: 'type', label: 'Tipo' },
     { key: 'payment_date', label: 'Data pgto' },
     { key: 'won', _style: { width: '5%' }, label: 'Sorteado' },
@@ -249,6 +256,7 @@ const RafflesDetail = props => {
             ),
             won: item => <td>{checkWonColor(item.won)}</td>,
             numbers: item => <td>{treatNumbers(item.numbers)}</td>,
+            pgtoStatus: item => <td>{handleStatus(item.payment.status)}</td>,
             show_details: (item, index) => {
               return (
                 <td className="py-2">

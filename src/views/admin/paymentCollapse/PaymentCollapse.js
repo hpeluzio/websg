@@ -38,7 +38,9 @@ const PaymentCollapse = ({ payment_id, show }) => {
 
   const getBadge = status => {
     if (status === 'approved') return 'green';
-    else return 'yellow';
+    if (status === 'in_process') return 'orange';
+    if (status === 'rejected') return 'red';
+    else return 'black';
   };
 
   if (loading)

@@ -98,6 +98,12 @@ const RafflesDetail = props => {
     [raffle.numbers, isThisNumberInRaffle],
   );
 
+  const handleStatus = useCallback(status => {
+    if (status === 'approved') return 'Ok';
+    if (status === 'in_process') return 'Processando';
+    if (status === 'rejected') return 'Rejeitado';
+  }, []);
+
   const fields = [
     // { key: 'id', _style: { width: '5%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
@@ -105,6 +111,7 @@ const RafflesDetail = props => {
     // { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
     { key: 'won', label: 'Sorteado' },
+    { key: 'pgtoStatus', label: 'Pgto' },
     // { key: 'payment_id', label: 'Pagamento' },
     // { key: 'type', label: 'Tipo' },
     // { key: 'payment_date', label: 'Data pgto' },
@@ -164,6 +171,7 @@ const RafflesDetail = props => {
             ),
             won: item => <td>{checkWonColor(item.won)}</td>,
             numbers: item => <td>{treatNumbers(item.numbers)}</td>,
+            pgtoStatus: item => <td>{handleStatus(item.payment.status)}</td>,
           }}
         />
       </Container>

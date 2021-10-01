@@ -58,7 +58,7 @@ const Raffles = () => {
         sorter
         pagination
         onRowClick={item => onRowClicked(item)}
-        noItemsViewSlot={<div>Oi</div>}
+        // noItemsViewSlot={<div>Lista vazia</div>}
         scopedSlots={{
           init: item => (
             <td>{moment(item.init).format('DD/MM/YY, H:mm:ss')}</td>

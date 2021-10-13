@@ -240,8 +240,8 @@ const RafflesDetail = props => {
             status: item => <td>{statusHandler(item.status)}</td>,
             payment_id: item => (
               <td>
-                <a href={`/admin/payment/${item.payment.id}`}>
-                  {item.payment.id}
+                <a href={`/admin/payment/${item.payment.platform_payment_id}`}>
+                  {item.payment.platform_payment_id}
                 </a>
                 {/* <button onPress={() => onClickPaymentId(item.payment.id)}>
                   {item.payment.id}
@@ -277,7 +277,7 @@ const RafflesDetail = props => {
               return (
                 <CCollapse show={details.includes(index)}>
                   <PaymentCollapse
-                    payment_id={item.payment.id}
+                    payment_id={item.payment.platform_payment_id}
                     show={details.includes(index)}
                   />
                 </CCollapse>

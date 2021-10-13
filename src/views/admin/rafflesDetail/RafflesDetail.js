@@ -218,7 +218,7 @@ const RafflesDetail = props => {
                   setShowEditNumbersRaffle(!showEditNumbersRaffle)
                 }>
                 <CIcon name="cil-pencil" className="mfe-2" />
-                Adicionar números da mega {raffle.name}
+                Editar números do sorteio {raffle.name}
               </AddButton>
             )}
             {raffle.numbers !== null && (
@@ -227,7 +227,7 @@ const RafflesDetail = props => {
                   setShowEditNumbersRaffle(!showEditNumbersRaffle)
                 }>
                 <CIcon name="cil-pencil" className="mfe-2" />
-                Editar números da MEGA {raffle.name}
+                Editar números do sorteio {raffle.name}
               </EditButton>
             )}
 

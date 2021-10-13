@@ -87,8 +87,8 @@ const RafflesDetail = props => {
 
   const isThisNumberInRaffle = useCallback(
     (number, raffleNumbers) => {
-      console.log(number);
-      console.log(raffle.numbers);
+      // console.log(number);
+      // console.log(raffle.numbers);
 
       if (raffleNumbers !== null) {
         let raffleNumArray = raffle.numbers.split(',');

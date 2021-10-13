@@ -27,9 +27,9 @@ const Payment = () => {
     loadPayment();
   }, [loadPayment]);
 
-  useEffect(() => {
-    console.log(payment);
-  }, [payment]);
+  // useEffect(() => {
+  //   console.log(payment);
+  // }, [payment]);
 
   const getBadge = status => {
     if (status === 'approved') return 'green';

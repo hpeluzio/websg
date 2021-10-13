@@ -52,7 +52,7 @@ const EditRaffle = ({ close, raffle, loadRaffle }) => {
       Number(num6) >= 1 &&
       Number(num6) <= 60
     ) {
-      console.log('aq');
+      // console.log('aq');
       return true;
     }
     return false;

@@ -34,21 +34,24 @@ export const Row = styled.div`
   /* padding: 0.25rem; */
   /* border-width: 0.1rem;
   border-radius: 0.5rem; */
+  /* background: red; */
 `;
 
 export const Column = styled.div`
   display: flex;
+  max-height: 3.5rem;
   flex: 1;
   padding: 0.1rem;
 `;
 
 export const Column2 = styled.div`
   display: flex;
+  max-height: 3.5rem;
   flex: 4;
   padding: 0.1rem;
 `;
 
-export const ColumnEditForm = styled.div`
+export const ColumnEditNumbersForm = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
@@ -122,14 +125,15 @@ export const Number = styled.div`
 
 export const AddButton = styled.button`
   display: flex;
-  margin: 0.05rem;
-  padding: 0.5rem;
-  /* height: 3rem; */
-  /* width: 7rem; */
+  max-height: 3.5rem;
+  margin: 0.1rem;
+  padding: 0.1rem;
   border: 0;
   align-items: center;
   justify-content: center;
-  border-radius: 0.35rem;
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
   font-weight: bold;
   color: ${colors.white};
   background: ${colors.primary};
@@ -137,15 +141,32 @@ export const AddButton = styled.button`
 
 export const EditButton = styled.button`
   display: flex;
-  margin: 0.05rem;
-  padding: 0.5rem;
-  /* height: 3rem; */
-  /* width: 7rem; */
+  max-height: 3.5rem;
+  margin: 0.1rem;
+  padding: 0.1rem;
   border: 0;
   align-items: center;
   justify-content: center;
-  border-radius: 0.35rem;
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
   font-weight: bold;
   color: ${colors.white};
   background: ${colors.secondaryWarning};
+`;
+
+export const EditAllButton = styled.button`
+  display: flex;
+  max-height: 3.5rem;
+  margin: 0.1rem;
+  padding: 0.5rem;
+  border: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  color: ${colors.white};
+  background: ${colors.mediumGray};
 `;

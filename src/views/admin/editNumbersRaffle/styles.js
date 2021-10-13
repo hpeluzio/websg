@@ -57,6 +57,19 @@ export const NumbersContainer = styled.div`
   background: ${colors.lightGray};
 `;
 
+export const Number = styled.div`
+  display: flex;
+  margin: 0.05rem;
+  height: 1.3rem;
+  width: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.35rem;
+  font-weight: bold;
+  color: ${colors.mediumGray};
+  background: ${colors.white};
+`;
+
 export const RowButton = styled.div`
   display: flex;
   flex-direction: row;
@@ -97,29 +110,11 @@ export const SaveButton = styled.button`
   background: ${colors.primary};
 `;
 
-export const Label = styled.div`
-  margin: 0.05rem;
-  padding: 1rem;
-  /* height: 3.5rem; */
-  /* width: 8.5rem; */
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 1.6rem;
-  margin-right: 0.25rem;
-  border-radius: 0.35rem;
-  /* border-style: solid; */
-  border-color: ${colors.lightGray};
-  border-width: 0.1rem;
-  color: ${colors.mediumGray};
-  background: ${colors.white};
-`;
-
-export const Input = styled.input`
+export const NumberInput = styled.input`
   margin: 0.05rem;
   padding: 1rem;
   height: 3.5rem;
-  width: 8.5rem;
+  width: 4.5rem;
   align-items: center;
   justify-content: center;
   text-align: center;

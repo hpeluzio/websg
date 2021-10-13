@@ -18,6 +18,7 @@ import RaffleService from 'src/services/RaffleService';
 import PaymentCollapse from 'src/views/admin/paymentCollapse/PaymentCollapse';
 
 import EditRaffle from '../editRaffle/EditRaffle';
+import EditNumbersRaffle from '../editNumbersRaffle/EditNumbersRaffle';
 
 import {
   Container,
@@ -25,13 +26,14 @@ import {
   Row,
   Column,
   Column2,
-  ColumnEditForm,
+  ColumnEditNumbersForm,
   Text,
   Text2,
   NumbersContainer,
   Number,
   AddButton,
   EditButton,
+  EditAllButton,
 } from './styles';
 
 const RafflesDetail = props => {
@@ -39,11 +41,24 @@ const RafflesDetail = props => {
   const [details, setDetails] = useState([]);
   const [games, setGames] = useState([]);
   const [showEditRaffle, setShowEditRaffle] = useState(false);
+  const [showEditNumbersRaffle, setShowEditNumbersRaffle] = useState(false);
   let { id } = useParams();
 
   // useEffect(() => {
   //   console.log(raffle);
   // }, [raffle]);
+
+  useEffect(() => {
+    if (showEditRaffle === true) {
+      setShowEditNumbersRaffle(false);
+    }
+  }, [showEditRaffle]);
+
+  useEffect(() => {
+    if (showEditNumbersRaffle === true) {
+      setShowEditRaffle(false);
+    }
+  }, [showEditNumbersRaffle]);
 
   const loadRaffle = useCallback(async () => {
     const _response = await RaffleService.detailAdmin({ id });
@@ -192,31 +207,45 @@ const RafflesDetail = props => {
               <Text2>{numbersHandler(raffle.numbers)}</Text2>
             </Column2>
 
-            <Row>
-              <ColumnEditForm>
-                {raffle.numbers === null && (
-                  <AddButton onClick={() => setShowEditRaffle(!showEditRaffle)}>
-                    <CIcon name="cil-pencil" className="mfe-2" />
-                    Adicionar números da mega {raffle.name}
-                  </AddButton>
-                )}
-                {raffle.numbers !== null && (
-                  <EditButton
-                    onClick={() => setShowEditRaffle(!showEditRaffle)}>
-                    <CIcon name="cil-pencil" className="mfe-2" />
-                    Editar números da MEGA {raffle.name}
-                  </EditButton>
-                )}
-              </ColumnEditForm>
-              {/* <Column2>
+            <EditAllButton onClick={() => setShowEditRaffle(!showEditRaffle)}>
+              <CIcon name="cil-pencil" className="mfe-2" />
+              Editar dados deste sorteio
+            </EditAllButton>
+
+            {raffle.numbers === null && (
+              <AddButton
+                onClick={() =>
+                  setShowEditNumbersRaffle(!showEditNumbersRaffle)
+                }>
+                <CIcon name="cil-pencil" className="mfe-2" />
+                Adicionar números da mega {raffle.name}
+              </AddButton>
+            )}
+            {raffle.numbers !== null && (
+              <EditButton
+                onClick={() =>
+                  setShowEditNumbersRaffle(!showEditNumbersRaffle)
+                }>
+                <CIcon name="cil-pencil" className="mfe-2" />
+                Editar números da MEGA {raffle.name}
+              </EditButton>
+            )}
+
+            {/* <Column2>
               <Text2>{numbersHandler(raffle.numbers)}</Text2>
             </Column2> */}
-            </Row>
           </Row>
         </RaffleContent>
         {showEditRaffle && (
           <EditRaffle
             close={setShowEditRaffle}
+            raffle={raffle}
+            loadRaffle={loadRaffle}
+          />
+        )}
+        {showEditNumbersRaffle && (
+          <EditNumbersRaffle
+            close={setShowEditNumbersRaffle}
             raffle={raffle}
             loadRaffle={loadRaffle}
           />

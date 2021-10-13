@@ -28,6 +28,15 @@ class RaffleService {
     return _response;
   }
 
+  async updateRaffle({ id, name }) {
+    const _response = await api
+      .patch(`/raffle/${id}`, { name })
+      .then(r => r)
+      .catch(e => e.response);
+    // console.log(_response);
+    return _response;
+  }
+
   async updateNumbers({ id, numbers }) {
     const _response = await api
       .patch(`/raffle/${id}`, { numbers })

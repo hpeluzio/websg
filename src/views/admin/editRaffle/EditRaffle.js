@@ -7,7 +7,8 @@ import {
   RaffleContent,
   Row,
   RowButton,
-  NumberInput,
+  Label,
+  Input,
   SaveButton,
   CancelButton,
   Loader,
@@ -15,65 +16,34 @@ import {
 
 const EditRaffle = ({ close, raffle, loadRaffle }) => {
   const [loading, setLoading] = useState(false);
-  const [num1, setNum1] = useState('');
-  const [num2, setNum2] = useState('');
-  const [num3, setNum3] = useState('');
-  const [num4, setNum4] = useState('');
-  const [num5, setNum5] = useState('');
-  const [num6, setNum6] = useState('');
-
-  // useEffect(() => {
-  //   console.log(num1);
-  // }, [num1]);
+  const [name, setName] = useState('');
 
   useEffect(() => {
-    if (raffle.numbers !== null) {
-      setNum1(raffle.numbers.split(',')[0]);
-      setNum2(raffle.numbers.split(',')[1]);
-      setNum3(raffle.numbers.split(',')[2]);
-      setNum4(raffle.numbers.split(',')[3]);
-      setNum5(raffle.numbers.split(',')[4]);
-      setNum6(raffle.numbers.split(',')[5]);
-    }
-  }, [raffle.numbers]);
+    console.log(name);
+  }, [name]);
 
-  const validateNumbers = useCallback(() => {
-    if (
-      Number(num1) >= 1 &&
-      Number(num1) <= 60 &&
-      Number(num2) >= 1 &&
-      Number(num2) <= 60 &&
-      Number(num3) >= 1 &&
-      Number(num3) <= 60 &&
-      Number(num4) >= 1 &&
-      Number(num4) <= 60 &&
-      Number(num5) >= 1 &&
-      Number(num5) <= 60 &&
-      Number(num6) >= 1 &&
-      Number(num6) <= 60
-    ) {
-      // console.log('aq');
-      return true;
+  useEffect(() => {
+    if (raffle.name !== null) {
+      setName(raffle.name);
     }
-    return false;
-  }, [num1, num2, num3, num4, num5, num6]);
+  }, [raffle.name]);
+
+  const validateName = useCallback(() => {
+    if (name === '') {
+      return false;
+    }
+    return true;
+  }, [name]);
 
   const saveRaffle = useCallback(async () => {
-    if (validateNumbers()) {
-      var confirmation = window.confirm('Deseja salvar estes números?');
+    if (validateName()) {
+      var confirmation = window.confirm('Deseja salvar os dados?');
 
       if (confirmation === true) {
         setLoading(true);
-        const _response = await RaffleService.updateNumbers({
+        const _response = await RaffleService.updateRaffle({
           id: raffle.id,
-          numbers: [
-            Number(num1),
-            Number(num2),
-            Number(num3),
-            Number(num4),
-            Number(num5),
-            Number(num6),
-          ],
+          name: Number(name),
         });
         console.log(_response);
         setLoading(false);
@@ -89,17 +59,7 @@ const EditRaffle = ({ close, raffle, loadRaffle }) => {
     } else {
       alert('Envie números com valor entre 1 e 60.');
     }
-  }, [
-    validateNumbers,
-    loadRaffle,
-    raffle.id,
-    num1,
-    num2,
-    num3,
-    num4,
-    num5,
-    num6,
-  ]);
+  }, [validateName, loadRaffle, raffle.id, name]);
 
   if (raffle && loading)
     return (
@@ -113,35 +73,11 @@ const EditRaffle = ({ close, raffle, loadRaffle }) => {
       <Container>
         <RaffleContent>
           <Row>
-            <NumberInput
+            <Label>Número sorteio: </Label>
+            <Input
               type="text"
-              value={num1}
-              onChange={e => setNum1(e.target.value)}
-            />
-            <NumberInput
-              type="text"
-              value={num2}
-              onChange={e => setNum2(e.target.value)}
-            />
-            <NumberInput
-              type="text"
-              value={num3}
-              onChange={e => setNum3(e.target.value)}
-            />
-            <NumberInput
-              type="text"
-              value={num4}
-              onChange={e => setNum4(e.target.value)}
-            />
-            <NumberInput
-              type="text"
-              value={num5}
-              onChange={e => setNum5(e.target.value)}
-            />
-            <NumberInput
-              type="text"
-              value={num6}
-              onChange={e => setNum6(e.target.value)}
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
           </Row>
         </RaffleContent>

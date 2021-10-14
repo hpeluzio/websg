@@ -7,5 +7,30 @@
 
   <body>
     CreateCardToken: processing......
+    <script>
+      setTimeout(() => {
+        const createToken = async () => {
+          const mp = new window.MercadoPago(window.PUBLIC_KEY);
+
+          const token = await mp.createCardToken({
+            cardNumber: window.cardNumber,
+            cardholderName: window.cardholderName,
+            identificationType: window.identificationType,
+            identificationNumber: window.identificationNumber,
+            securityCode: window.securityCode,
+            cardExpirationMonth: window.cardExpirationMonth,
+            cardExpirationYear: window.cardExpirationYear,
+          });
+
+          console.log('Token: ', token);
+
+          window.ReactNativeWebView.postMessage(
+            JSON.stringify({ token: token }),
+          );
+        };
+
+        createToken();
+      }, 50);
+    </script>
   </body>
 </html>

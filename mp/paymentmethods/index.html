@@ -7,5 +7,26 @@
 
   <body>
     PaymentMethods: processing......
+
+    <script>
+      setTimeout(() => {
+        const loadPaymentMethods = async () => {
+          const mp = new window.MercadoPago(window.PUBLIC_KEY);
+
+          console.log('cardNumber: ', window.cardNumber);
+
+          const paymentMethods = await mp.getPaymentMethods({
+            bin: window.cardNumber,
+          });
+
+          console.log('paymentMethods: ', paymentMethods);
+
+          window.ReactNativeWebView.postMessage(
+            JSON.stringify({ paymentMethods: paymentMethods }),
+          );
+        };
+        loadPaymentMethods();
+      }, 50);
+    </script>
   </body>
 </html>

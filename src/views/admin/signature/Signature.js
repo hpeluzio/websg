@@ -14,12 +14,12 @@ import {
   TextStatus,
 } from './styles';
 
-const Payment = () => {
+const Signature = () => {
   const [payment, setPayment] = useState({});
   let { id } = useParams();
 
   const loadPayment = useCallback(async () => {
-    const _response = await PaymentService.getSignature({ id });
+    const _response = await PaymentService.getPayment({ id });
     setPayment(_response.data);
   }, [id]);
 
@@ -98,4 +98,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Signature;

@@ -26,7 +26,7 @@ import {
   Row,
   Column,
   Column2,
-  ColumnEditNumbersForm,
+  // ColumnEditNumbersForm,
   Text,
   Text2,
   NumbersContainer,
@@ -35,8 +35,9 @@ import {
   EditButton,
   EditAllButton,
 } from './styles';
+import SignatureCollapse from '../signatureCollapse/SignatureCollapse';
 
-const RafflesDetail = props => {
+const RafflesDetail = () => {
   const [raffle, setRaffle] = useState({});
   const [details, setDetails] = useState([]);
   const [games, setGames] = useState([]);
@@ -303,14 +304,26 @@ const RafflesDetail = props => {
               );
             },
             details: (item, index) => {
-              return (
-                <CCollapse show={details.includes(index)}>
-                  <PaymentCollapse
-                    payment_id={item.payment.platform_payment_id}
-                    show={details.includes(index)}
-                  />
-                </CCollapse>
-              );
+              console.log(item);
+              if (item.payment.type === 'single') {
+                return (
+                  <CCollapse show={details.includes(index)}>
+                    <PaymentCollapse
+                      payment_id={item.payment.platform_payment_id}
+                      show={details.includes(index)}
+                    />
+                  </CCollapse>
+                );
+              } else if (item.payment.type === 'signature') {
+                return (
+                  <CCollapse show={details.includes(index)}>
+                    <SignatureCollapse
+                      payment_id={item.payment.platform_payment_id}
+                      show={details.includes(index)}
+                    />
+                  </CCollapse>
+                );
+              }
             },
           }}
         />

@@ -37,8 +37,8 @@ const SignatureCollapse = ({ payment_id, show }) => {
   // }, [payment_id, show]);
 
   const getBadge = status => {
-    if (status === 'approved') return 'green';
-    if (status === 'in_process') return 'orange';
+    if (status === 'authorized') return 'green';
+    if (status === 'pending') return 'orange';
     if (status === 'rejected') return 'red';
     else return 'black';
   };
@@ -76,33 +76,33 @@ const SignatureCollapse = ({ payment_id, show }) => {
               </Column2>
             </Row>
           )}
-          {payment.status_detail && (
+          {payment.reason && (
             <Row>
               <Column>
-                <Text>Detalhes status</Text>
+                <Text>Plano</Text>
               </Column>
               <Column2>
-                <Text2>{payment.status_detail}</Text2>
+                <Text2>{payment.reason}</Text2>
               </Column2>
             </Row>
           )}
-          {payment.status_detail && (
+          {payment.payer_email && (
             <Row>
               <Column>
-                <Text>Nome no cartão</Text>
+                <Text>E-mail</Text>
               </Column>
               <Column2>
-                <Text2>{payment.card.cardholder.name}</Text2>
+                <Text2>{payment.payer_email}</Text2>
               </Column2>
             </Row>
           )}
-          {payment.status_detail && (
+          {payment.external_reference && (
             <Row>
               <Column>
-                <Text>Valor</Text>
+                <Text>external_reference</Text>
               </Column>
               <Column2>
-                <Text2>{payment.transaction_amount}</Text2>
+                <Text2>{payment.external_reference}</Text2>
               </Column2>
             </Row>
           )}

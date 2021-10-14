@@ -121,9 +121,11 @@ const RafflesDetail = () => {
 
       return (
         <NumbersContainer>
-          {numbersTreated.map(n => {
+          {numbersTreated.map((n, index) => {
             return (
-              <Number hit={isThisNumberInRaffle(n, raffle.numbers)}>{n}</Number>
+              <Number key={index} hit={isThisNumberInRaffle(n, raffle.numbers)}>
+                {n}
+              </Number>
             );
           })}
         </NumbersContainer>
@@ -144,9 +146,18 @@ const RafflesDetail = () => {
   };
 
   const handleStatus = useCallback(status => {
-    if (status === 'approved') return 'Ok';
-    if (status === 'in_process') return 'Processando';
-    if (status === 'rejected') return 'Rejeitado';
+    if (status === 'approved')
+      return <div style={{ fontWeight: 'bold', color: 'green' }}>Aprovado</div>;
+    if (status === 'in_process')
+      return (
+        <div style={{ fontWeight: 'bold', color: 'orange' }}>Processando</div>
+      );
+    if (status === 'pending')
+      return (
+        <div style={{ fontWeight: 'bold', color: 'orange' }}>Pendente</div>
+      );
+    if (status === 'rejected')
+      return <div style={{ fontWeight: 'bold', color: 'red' }}>Rejeitado</div>;
   }, []);
 
   const fields = [
@@ -155,7 +166,7 @@ const RafflesDetail = () => {
     { key: 'numbers', label: 'Números' },
     { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
-    { key: 'payment_id', label: 'Pagamento' },
+    // { key: 'payment_id', _style: { width: '1%' }, label: 'Pagamento' },
     { key: 'pgtoStatus', label: 'Pgto' },
     { key: 'type', label: 'Tipo' },
     { key: 'payment_date', label: 'Data pgto' },
@@ -271,11 +282,8 @@ const RafflesDetail = () => {
             payment_id: item => (
               <td>
                 <a href={`/admin/payment/${item.payment.platform_payment_id}`}>
-                  {item.payment.platform_payment_id}
+                  Detalhes
                 </a>
-                {/* <button onPress={() => onClickPaymentId(item.payment.id)}>
-                  {item.payment.id}
-                </button> */}
               </td>
             ),
             type: item => <td>{item.payment.type}</td>,
@@ -304,7 +312,6 @@ const RafflesDetail = () => {
               );
             },
             details: (item, index) => {
-              console.log(item);
               if (item.payment.type === 'single') {
                 return (
                   <CCollapse show={details.includes(index)}>

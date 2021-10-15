@@ -19,7 +19,7 @@ const Signature = () => {
   let { id } = useParams();
 
   const loadPayment = useCallback(async () => {
-    const _response = await PaymentService.getPayment({ id });
+    const _response = await PaymentService.getSignature({ id });
     setPayment(_response.data);
   }, [id]);
 
@@ -32,8 +32,9 @@ const Signature = () => {
   // }, [payment]);
 
   const getBadge = status => {
-    if (status === 'approved') return 'green';
-    else return 'yellow';
+    if (status === 'authorized') return 'green';
+    if (status === 'pending') return 'orange';
+    else return 'red';
   };
 
   return (
@@ -61,33 +62,31 @@ const Signature = () => {
             </Column2>
           </Row>
         )}
-
-        {payment.status_detail && (
+        {payment.payer_email && (
           <Row>
             <Column>
-              <Text>Nome no cartão</Text>
+              <Text>E-mail</Text>
             </Column>
             <Column2>
-              <Text2>{payment.card.cardholder.name}</Text2>
+              <Text2>{payment.payer_email}</Text2>
             </Column2>
           </Row>
         )}
-        {payment.status_detail && (
+        {payment.reason && (
           <Row>
             <Column>
-              <Text>Valor</Text>
+              <Text>Plano</Text>
             </Column>
             <Column2>
-              <Text2>{payment.transaction_amount}</Text2>
+              <Text2>{payment.reason}</Text2>
             </Column2>
           </Row>
         )}
-
         {payment && (
           <Row>
-            <Column>
+            {/* <Column>
               <Text>Outras info úteis</Text>
-            </Column>
+            </Column> */}
             <Column2>
               <pre>{JSON.stringify(payment, null, 2)}</pre>
             </Column2>

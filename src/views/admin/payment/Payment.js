@@ -19,7 +19,7 @@ const Payment = () => {
   let { id } = useParams();
 
   const loadPayment = useCallback(async () => {
-    const _response = await PaymentService.getSignature({ id });
+    const _response = await PaymentService.getPayment({ id });
     setPayment(_response.data);
   }, [id]);
 
@@ -85,9 +85,9 @@ const Payment = () => {
 
         {payment && (
           <Row>
-            <Column>
+            {/* <Column>
               <Text>Outras info úteis</Text>
-            </Column>
+            </Column> */}
             <Column2>
               <pre>{JSON.stringify(payment, null, 2)}</pre>
             </Column2>

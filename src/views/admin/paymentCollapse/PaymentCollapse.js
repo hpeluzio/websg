@@ -62,7 +62,7 @@ const PaymentCollapse = ({ payment_id, show }) => {
               <Column2>
                 {/* <Text2>{payment.id}</Text2> */}
                 <Text2>
-                  <a href={`/admin/signature/${payment.id}`}>{payment.id}</a>
+                  <a href={`/admin/payment/${payment.id}`}>{payment.id}</a>
                 </Text2>
               </Column2>
             </Row>

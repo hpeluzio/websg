@@ -148,6 +148,10 @@ const RafflesDetail = () => {
   const handleStatus = useCallback(status => {
     if (status === 'approved')
       return <div style={{ fontWeight: 'bold', color: 'green' }}>Aprovado</div>;
+    if (status === 'authorized')
+      return (
+        <div style={{ fontWeight: 'bold', color: 'green' }}>Autorizado</div>
+      );
     if (status === 'in_process')
       return (
         <div style={{ fontWeight: 'bold', color: 'orange' }}>Processando</div>

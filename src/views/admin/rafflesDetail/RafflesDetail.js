@@ -35,7 +35,10 @@ import {
   EditButton,
   EditAllButton,
 } from './styles';
+
 import SignatureCollapse from '../signatureCollapse/SignatureCollapse';
+
+import countGameHits from 'src/utils/countGameHits';
 
 const RafflesDetail = () => {
   const [raffle, setRaffle] = useState({});
@@ -91,15 +94,22 @@ const RafflesDetail = () => {
     } else return numbers;
   }, []);
 
-  const checkWonColor = useCallback(won => {
-    if (won === 'Sim') {
-      return <div style={{ color: 'blue' }}>Sorteado</div>;
-    }
-    if (won === 'Não') {
-      return <div>Não</div>;
-    }
-    return <div>-</div>;
-  }, []);
+  const checkWonColor = useCallback(
+    game => {
+      if (raffle.numbers === null) {
+        return <div>-</div>;
+      }
+      if (countGameHits(game, raffle) < 6) {
+        return <div>Não</div>;
+      }
+      if (countGameHits(game, raffle) === 6) {
+        return <div style={{ color: 'blue' }}>Sorteado</div>;
+      }
+
+      return <div>-</div>;
+    },
+    [raffle],
+  );
 
   const isThisNumberInRaffle = useCallback(
     (number, raffleNumbers) => {
@@ -296,7 +306,7 @@ const RafflesDetail = () => {
                 {moment(item.payment.created_at).format('DD/MM/YY, H:mm:ss')}
               </td>
             ),
-            won: item => <td>{checkWonColor(item.won)}</td>,
+            won: item => <td>{checkWonColor(item)}</td>,
             numbers: item => <td>{treatNumbers(item.numbers)}</td>,
             pgtoStatus: item => <td>{handleStatus(item.payment.status)}</td>,
             show_details: (item, index) => {

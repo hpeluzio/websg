@@ -64,6 +64,7 @@ const EditNumbersRaffle = ({ close, raffle, loadRaffle }) => {
 
       if (confirmation === true) {
         setLoading(true);
+        console.log('updateNumbers');
         const _response = await RaffleService.updateNumbers({
           id: raffle.id,
           numbers: [

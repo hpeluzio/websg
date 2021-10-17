@@ -16,6 +16,8 @@ import {
   Number,
 } from './styles';
 
+import countGameHits from 'src/utils/countGameHits';
+
 // import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
 
 const RafflesDetail = props => {
@@ -57,15 +59,22 @@ const RafflesDetail = props => {
     } else return numbers;
   }, []);
 
-  const checkWonColor = useCallback(won => {
-    if (won === 'Sim') {
-      return <div style={{ color: 'blue' }}>Sorteado</div>;
-    }
-    if (won === 'Não') {
-      return <div>Não</div>;
-    }
-    return <div>-</div>;
-  }, []);
+  const checkWonColor = useCallback(
+    game => {
+      if (raffle.numbers === null) {
+        return <div>-</div>;
+      }
+      if (countGameHits(game, raffle) < 6) {
+        return <div>Não</div>;
+      }
+      if (countGameHits(game, raffle) === 6) {
+        return <div style={{ color: 'blue' }}>Sorteado</div>;
+      }
+
+      return <div>-</div>;
+    },
+    [raffle],
+  );
 
   const isThisNumberInRaffle = useCallback(
     (number, raffleNumbers) => {
@@ -171,7 +180,7 @@ const RafflesDetail = props => {
             created_at: item => (
               <td>{moment(item.created_at).format('DD/MM/YY, H:mm:ss')}</td>
             ),
-            won: item => <td>{checkWonColor(item.won)}</td>,
+            won: item => <td>{checkWonColor(item)}</td>,
             numbers: item => <td>{treatNumbers(item.numbers)}</td>,
             pgtoStatus: item => <td>{handleStatus(item.payment.status)}</td>,
           }}

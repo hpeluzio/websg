@@ -1,28 +1,25 @@
 import styled from 'styled-components';
 
 import { colors, constants } from 'src/styles';
-import TrevoLogo from 'src/assets/trevo.svg';
+import EmptyGif from 'src/assets/empty_white.gif';
 
 export const Container = styled.div`
-  /* height: 20rem;
-  width: 20rem; */
   display: flex;
   flex-direction: column;
-  /* border-style: solid; */
-  /* border-color: ${colors.lightGray}; */
-  /* border-width: 0.1rem; */
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
   background: ${colors.white};
 `;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-  display: flex;
+export const NotFoundText = styled.h5`
+  color: ${colors.mediumGray};
   background: ${colors.white};
-  /* border-style: solid;
-  border-color: ${colors.lightGray};
-  border-width: 0.1rem; */
+`;
+
+export const Empty = styled.img.attrs({
+  src: EmptyGif,
+})`
+  height: 8rem;
+  /* background-color: blue; */
 `;

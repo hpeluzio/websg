@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CDataTable } from '@coreui/react';
+
 import moment from 'moment';
 
 import RaffleService from 'src/services/RaffleService';
@@ -18,7 +19,7 @@ import {
 
 import countGameHits from 'src/utils/countGameHits';
 
-// import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
+import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
 
 const RafflesDetail = props => {
   const [raffle, setRaffle] = useState({});
@@ -174,7 +175,9 @@ const RafflesDetail = props => {
           hover
           sorter
           pagination
-          // noItemsViewSlot
+          noItemsViewSlot={
+            <NoItemsViewSlot text={'Nenhum jogo neste sorteio'} />
+          }
           // onRowClick={item => onRowClicked(item)}
           scopedSlots={{
             created_at: item => (

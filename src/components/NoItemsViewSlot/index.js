@@ -1,9 +1,15 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Empty, NotFoundText } from './styles';
 
-const NoItemsViewSlot = () => {
-  return <Container>Lista vazia</Container>;
+const NoItemsViewSlot = ({ text }) => {
+  // return <Container>Lista vazia</Container>;
+  return (
+    <Container>
+      <Empty />
+      <NotFoundText>{text}</NotFoundText>
+    </Container>
+  );
 };
 
 export default NoItemsViewSlot;

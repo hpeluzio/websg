@@ -6,8 +6,10 @@ import UserService from 'src/services/UserService';
 
 import { Container } from './styles';
 
+import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
+
 const Users = () => {
-  const [details, setDetails] = useState([]);
+  // const [details, setDetails] = useState([]);
   const [users, setUsers] = useState([]);
 
   const loadUsers = useCallback(async () => {
@@ -63,6 +65,7 @@ const Users = () => {
         hover
         sorter
         pagination
+        noItemsViewSlot={<NoItemsViewSlot text={'Nenhum jogo neste sorteio'} />}
         scopedSlots={{
           status: item => (
             <td>

@@ -37,7 +37,7 @@ import {
 } from './styles';
 
 import SignatureCollapse from '../signatureCollapse/SignatureCollapse';
-
+import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
 import countGameHits from 'src/utils/countGameHits';
 
 const RafflesDetail = () => {
@@ -287,6 +287,9 @@ const RafflesDetail = () => {
           hover
           sorter
           pagination
+          noItemsViewSlot={
+            <NoItemsViewSlot text={'Nenhum jogo neste sorteio'} />
+          }
           // onRowClick={item => onRowClicked(item)}
           scopedSlots={{
             created_at: item => (

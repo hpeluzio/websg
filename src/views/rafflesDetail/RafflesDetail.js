@@ -87,9 +87,11 @@ const RafflesDetail = props => {
 
       return (
         <NumbersContainer>
-          {numbersTreated.map(n => {
+          {numbersTreated.map((n, index) => {
             return (
-              <Number hit={isThisNumberInRaffle(n, raffle.numbers)}>{n}</Number>
+              <Number key={index} hit={isThisNumberInRaffle(n, raffle.numbers)}>
+                {n}
+              </Number>
             );
           })}
         </NumbersContainer>

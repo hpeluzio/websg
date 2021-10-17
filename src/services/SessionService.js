@@ -1,4 +1,4 @@
-import api from 'src/config/apiWithLoading';
+import api from 'src/config/api';
 
 class SessionService {
   async login({ email, password }) {

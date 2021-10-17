@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Container, Loader } from './styles';
+import { Container, Animation } from './styles';
 
 const TheLoading = () => {
   return (
     <Container>
-      <Loader />
+      <Animation />
     </Container>
   );
 };

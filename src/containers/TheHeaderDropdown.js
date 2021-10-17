@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSession } from '../redux/actions/session/sessionActions';
 import {
   // CBadge,
@@ -13,6 +13,7 @@ import CIcon from '@coreui/icons-react';
 
 const TheHeaderDropdown = () => {
   const dispatch = useDispatch();
+  const email = useSelector(s => s.session.user.email);
 
   const logout = useCallback(() => {
     var confirmation = window.confirm('Deseja encerrar a sessão?');
@@ -37,8 +38,11 @@ const TheHeaderDropdown = () => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light" className="text-center">
-          <strong>Conta</strong>
+          <strong>Logado: {email}</strong>
         </CDropdownItem>
+        {/* <CDropdownItem header tag="div" color="light" className="text-center">
+          <strong>Conta</strong>
+        </CDropdownItem> */}
         {/* <CDropdownItem>
           <CIcon name="cil-bell" className="mfe-2" />
           Updates

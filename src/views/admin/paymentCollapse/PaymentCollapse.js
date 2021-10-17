@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import PaymentService from 'src/services/PaymentService';
 
 import {
@@ -15,13 +17,11 @@ import {
 } from './styles';
 
 const PaymentCollapse = ({ payment_id, show }) => {
-  const [loading, setLoading] = useState({});
+  const loading = useSelector(s => s.layout.loading);
   const [payment, setPayment] = useState({});
 
   const loadPayment = useCallback(async () => {
-    setLoading(true);
     const _response = await PaymentService.getPayment({ id: payment_id });
-    setLoading(false);
     setPayment(_response.data);
   }, [payment_id]);
 

@@ -1,13 +1,23 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { Container, Empty, NotFoundText } from './styles';
+import { Container, Loader, Empty, NotFoundText } from './styles';
 
 const NoItemsViewSlot = ({ text }) => {
+  const loading = useSelector(s => s.layout.loading);
   // return <Container>Lista vazia</Container>;
+
+  console.log('loading', loading);
+
   return (
     <Container>
-      <Empty />
-      <NotFoundText>{text}</NotFoundText>
+      {loading && <Loader />}
+      {!loading && (
+        <div>
+          <Empty />
+          <NotFoundText>{text}</NotFoundText>
+        </div>
+      )}
     </Container>
   );
 };

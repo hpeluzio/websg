@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import { colors, constants } from 'src/styles';
+
+import Spinner from 'src/assets/spinner.svg';
 import EmptyGif from 'src/assets/empty_white.gif';
 
 export const Container = styled.div`
@@ -22,4 +24,10 @@ export const Empty = styled.img.attrs({
 })`
   height: 8rem;
   /* background-color: blue; */
+`;
+
+export const Loader = styled.img.attrs({
+  src: Spinner,
+})`
+  height: 8rem;
 `;

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import PaymentService from 'src/services/PaymentService';
 
@@ -17,11 +16,13 @@ import {
 } from './styles';
 
 const SignatureCollapse = ({ payment_id, show }) => {
-  const loading = useSelector(s => s.layout.loading);
+  const [loading, setLoading] = useState(false);
   const [payment, setPayment] = useState({});
 
   const loadPayment = useCallback(async () => {
+    setLoading(true);
     const _response = await PaymentService.getSignature({ id: payment_id });
+    setLoading(false);
     setPayment(_response.data);
   }, [payment_id]);
 

@@ -4,6 +4,7 @@ import { Container } from './styles';
 import { CDataTable } from '@coreui/react';
 import moment from 'moment';
 import RaffleService from 'src/services/RaffleService';
+import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
 
 const Raffles = () => {
   const [raffles, setRaffles] = useState([]);
@@ -57,6 +58,7 @@ const Raffles = () => {
         hover
         sorter
         pagination
+        noItemsViewSlot={<NoItemsViewSlot text={'Nenhum sorteio cadastrado'} />}
         onRowClick={item => onRowClicked(item)}
         scopedSlots={{
           init: item => (

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Token MercadoPago</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+  </head>
+
+  <body>
+    <h3>
+      MercadoPago create CardToken with
+      <a href="https://github.com/mercadopago/sdk-js#params-4"
+        >Documentation of mercadopago GITHUB</a
+      >
+      and
+      <a
+        href="https://www.mercadopago.com.br/developers/pt/guides/online-payments/subscriptions/testing"
+        >Subscriptions documentation</a
+      >
+    </h3>
+
+    <h4>
+      The identificationNumber was generated with
+      <a href="https://www.4devs.com.br/gerador_de_cpf"
+        >4devs.com.br/gerador_de_cpf</a
+      >
+    </h4>
+
+    <h4>Data used:</h4>
+    <p>{</p>
+    <p>cardNumber: '5031755734530604',</p>
+    <p>cardholderName: 'APRO',</p>
+    <p>cardExpirationMonth: '11',</p>
+    <p>cardExpirationYear: '2025',</p>
+    <p>securityCode: '123',</p>
+    <p>identificationType: 'CPF',</p>
+    <p>identificationNumber: '83535924014',</p>
+    <p>}</p>
+
+    <script>
+      setTimeout(() => {
+        const createToken = async () => {
+          const mp = new window.MercadoPago(
+            'TEST-448447ef-4eeb-4828-9af9-18ec47f9bbb1',
+          );
+
+          const cardToken = await mp.createCardToken({
+            cardNumber: '5031755734530604',
+            cardholderName: 'APRO',
+            cardExpirationMonth: '11',
+            cardExpirationYear: '2025',
+            securityCode: '123',
+            identificationType: 'CPF',
+            identificationNumber: '83535924014',
+          });
+
+          console.log('Token: ', cardToken);
+
+          alert(cardToken.id);
+        };
+
+        createToken();
+      }, 50);
+    </script>
+  </body>
+</html>

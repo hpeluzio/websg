@@ -10,7 +10,8 @@ import {
   RaffleContent,
   Row,
   Column,
-  Column2,
+  Left,
+  Right,
   Text,
   Text2,
   NumbersContainer,
@@ -122,8 +123,8 @@ const RafflesDetail = props => {
     { key: 'numbers', label: 'Números' },
     // { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
-    { key: 'won', label: 'Sorteado' },
-    { key: 'pgtoStatus', label: 'Pgto' },
+    { key: 'won', label: 'Prêmio' },
+    // { key: 'pgtoStatus', label: 'Pgto' },
     // { key: 'payment_id', label: 'Pagamento' },
     // { key: 'type', label: 'Tipo' },
     // { key: 'payment_date', label: 'Data pgto' },
@@ -135,32 +136,37 @@ const RafflesDetail = props => {
         <RaffleContent>
           <Row>
             <Column>
-              <Text>Sorteio:</Text>{' '}
+              <Left>
+                <Text>Sorteio:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{raffle.name}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{raffle.name}</Text2>
-            </Column2>
             <Column>
-              <Text>Início:</Text>{' '}
+              <Left>
+                <Text>Início:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
-            </Column2>
             <Column>
-              <Text>Término:</Text>{' '}
+              <Left>
+                <Text>Término:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
-            </Column2>
-          </Row>
-
-          <Row>
             <Column>
-              <Text>Numeros:</Text>{' '}
+              <Left>
+                <Text>Números:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{numbersHandler(raffle.numbers)}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{numbersHandler(raffle.numbers)}</Text2>
-            </Column2>
           </Row>
         </RaffleContent>
 
@@ -168,8 +174,9 @@ const RafflesDetail = props => {
           items={games}
           fields={fields}
           // columnFilter
-          tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
           // footer
+          tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
+          responsive={true}
           itemsPerPageSelect={{ label: 'Items por página' }}
           itemsPerPage={20}
           hover

@@ -5,9 +5,6 @@ import { Container, Loader, Empty, NotFoundText } from './styles';
 
 const NoItemsViewSlot = ({ text }) => {
   const loading = useSelector(s => s.layout.loading);
-  // return <Container>Lista vazia</Container>;
-
-  console.log('loading', loading);
 
   return (
     <Container>

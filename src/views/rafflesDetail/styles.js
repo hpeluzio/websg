@@ -31,21 +31,32 @@ export const Row = styled.div`
   flex-direction: row;
   border-color: ${colors.lightGray};
   background: ${colors.white};
-  /* padding: 0.25rem; */
-  /* border-width: 0.1rem;
-  border-radius: 0.5rem; */
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export const Column = styled.div`
+  /* justify-content: center; */
+  /* align-items: center; */
   display: flex;
   flex: 1;
   padding: 0.1rem;
 `;
 
-export const Column2 = styled.div`
+export const Left = styled.div`
+  display: flex;
+  flex: 1;
+  padding: 0.1rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Right = styled.div`
   display: flex;
   flex: 4;
   padding: 0.1rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Text = styled.div`

@@ -24,8 +24,10 @@ import {
   Container,
   RaffleContent,
   Row,
+  ButtonRow,
   Column,
-  Column2,
+  Left,
+  Right,
   // ColumnEditNumbersForm,
   Text,
   Text2,
@@ -200,39 +202,47 @@ const RafflesDetail = () => {
         <RaffleContent>
           <Row>
             <Column>
-              <Text>Identificador:</Text>
+              <Left>
+                <Text>Identificador:</Text>
+              </Left>
+              <Right>
+                <Text2>{raffle.id}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{raffle.id}</Text2>
-            </Column2>
             <Column>
-              <Text>Sorteio:</Text>{' '}
+              <Left>
+                <Text>Sorteio:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{raffle.name}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{raffle.name}</Text2>
-            </Column2>
             <Column>
-              <Text>Início:</Text>{' '}
+              <Left>
+                <Text>Início:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{moment(raffle.init).format('DD/MM/YY, H:mm:ss')}</Text2>
-            </Column2>
             <Column>
-              <Text>Término:</Text>{' '}
+              <Left>
+                <Text>Término:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
+              </Right>
             </Column>
-            <Column2>
-              <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
-            </Column2>
+            <Column>
+              <Left>
+                <Text>Números:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{numbersHandler(raffle.numbers)}</Text2>
+              </Right>
+            </Column>
           </Row>
-
-          <Row>
-            <Column>
-              <Text>Números:</Text>{' '}
-            </Column>
-            <Column2>
-              <Text2>{numbersHandler(raffle.numbers)}</Text2>
-            </Column2>
-
+          <ButtonRow>
             <EditAllButton onClick={() => setShowEditRaffle(!showEditRaffle)}>
               <CIcon name="cil-pencil" className="mfe-2" />
               Editar dados deste sorteio
@@ -256,11 +266,7 @@ const RafflesDetail = () => {
                 Editar números do sorteio {raffle.name}
               </EditButton>
             )}
-
-            {/* <Column2>
-              <Text2>{numbersHandler(raffle.numbers)}</Text2>
-            </Column2> */}
-          </Row>
+          </ButtonRow>
         </RaffleContent>
         {showEditRaffle && (
           <EditRaffle
@@ -280,8 +286,9 @@ const RafflesDetail = () => {
           items={games}
           fields={fields}
           columnFilter
-          tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
           footer
+          responsive={true}
+          tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
           itemsPerPageSelect={{ label: 'Items por página' }}
           itemsPerPage={20}
           hover

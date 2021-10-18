@@ -15,15 +15,9 @@ export const Container = styled.div`
 `;
 
 export const RaffleContent = styled.div`
-  /* height: 20rem;
-  width: 20rem; */
   display: flex;
   flex-direction: column;
-  /* border-style: solid; */
-  /* border-color: ${colors.lightGray}; */
   background: ${colors.white};
-  /* padding: 0.5rem; */
-  /* border-width: 0.1rem; */
 `;
 
 export const Row = styled.div`
@@ -31,38 +25,53 @@ export const Row = styled.div`
   flex-direction: row;
   border-color: ${colors.lightGray};
   background: ${colors.white};
-  /* padding: 0.25rem; */
-  /* border-width: 0.1rem;
-  border-radius: 0.5rem; */
+  /* align-items: center;
+  justify-content: center; */
+  flex-wrap: wrap;
+  /* background: red; */
+`;
+
+export const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  border-color: ${colors.lightGray};
+  background: ${colors.white};
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   /* background: red; */
 `;
 
 export const Column = styled.div`
   display: flex;
-  max-height: 3.5rem;
+  flex-direction: row;
   flex: 1;
+  flex-wrap: nowrap;
   padding: 0.1rem;
 `;
 
-export const Column2 = styled.div`
-  display: flex;
-  max-height: 3.5rem;
-  flex: 4;
-  padding: 0.1rem;
-`;
-
-export const ColumnEditNumbersForm = styled.div`
+export const Left = styled.div`
   display: flex;
   flex: 1;
+  height: 4rem;
+  padding: 0.1rem;
   align-items: center;
   justify-content: center;
+`;
+
+export const Right = styled.div`
+  display: flex;
+  flex: 3;
+  height: 4rem;
   padding: 0.1rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Text = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: row;
+  /* flex-direction: row; */
   align-items: center;
   /* justify-content: center; */
   align-self: stretch;
@@ -125,7 +134,8 @@ export const Number = styled.div`
 
 export const AddButton = styled.button`
   display: flex;
-  max-height: 3.5rem;
+  width: 10rem;
+  height: 4rem;
   margin: 0.1rem;
   padding: 0.1rem;
   border: 0;
@@ -141,7 +151,8 @@ export const AddButton = styled.button`
 
 export const EditButton = styled.button`
   display: flex;
-  max-height: 3.5rem;
+  width: 10rem;
+  height: 4rem;
   margin: 0.1rem;
   padding: 0.1rem;
   border: 0;
@@ -157,7 +168,8 @@ export const EditButton = styled.button`
 
 export const EditAllButton = styled.button`
   display: flex;
-  max-height: 3.5rem;
+  width: 10rem;
+  height: 4rem;
   margin: 0.1rem;
   padding: 0.5rem;
   border: 0;

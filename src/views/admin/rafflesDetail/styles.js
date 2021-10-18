@@ -38,7 +38,7 @@ export const ButtonRow = styled.div`
   background: ${colors.white};
   align-items: center;
   justify-content: flex-end;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   /* background: red; */
 `;
 
@@ -53,7 +53,7 @@ export const Column = styled.div`
 export const Left = styled.div`
   display: flex;
   flex: 1;
-  height: 4rem;
+  height: 3.5rem;
   padding: 0.1rem;
   align-items: center;
   justify-content: center;
@@ -62,7 +62,7 @@ export const Left = styled.div`
 export const Right = styled.div`
   display: flex;
   flex: 3;
-  height: 4rem;
+  height: 3.5rem;
   padding: 0.1rem;
   align-items: center;
   justify-content: center;
@@ -135,7 +135,7 @@ export const Number = styled.div`
 export const AddButton = styled.button`
   display: flex;
   width: 10rem;
-  height: 4rem;
+  height: 3.5rem;
   margin: 0.1rem;
   padding: 0.1rem;
   border: 0;
@@ -152,7 +152,7 @@ export const AddButton = styled.button`
 export const EditButton = styled.button`
   display: flex;
   width: 10rem;
-  height: 4rem;
+  height: 3.5rem;
   margin: 0.1rem;
   padding: 0.1rem;
   border: 0;
@@ -169,7 +169,7 @@ export const EditButton = styled.button`
 export const EditAllButton = styled.button`
   display: flex;
   width: 10rem;
-  height: 4rem;
+  height: 3.5rem;
   margin: 0.1rem;
   padding: 0.5rem;
   border: 0;

@@ -15,16 +15,18 @@ import {
   Loader,
 } from './styles';
 
-const PaymentCollapse = ({ payment_id, show }) => {
+const PaymentCollapse = ({ game, show }) => {
   const [loading, setLoading] = useState(false);
   const [payment, setPayment] = useState({});
 
   const loadPayment = useCallback(async () => {
     setLoading(true);
-    const _response = await PaymentService.getPayment({ id: payment_id });
+    const _response = await PaymentService.getPayment({
+      id: game.payment.platform_payment_id,
+    });
     setLoading(false);
     setPayment(_response.data);
-  }, [payment_id]);
+  }, [game.payment.platform_payment_id]);
 
   useEffect(() => {
     if (show) {
@@ -43,6 +45,20 @@ const PaymentCollapse = ({ payment_id, show }) => {
     if (status === 'rejected') return 'red';
     else return 'black';
   };
+
+  const statusHandler = useCallback(status => {
+    if (status === 'notchecked') {
+      return 'Não visualizado';
+    }
+
+    if (status === 'checked') {
+      return 'Visualizado pelo jogador';
+    }
+
+    if (status === 'received') {
+      return 'Pago para o jogador';
+    }
+  }, []);
 
   if (loading)
     return (
@@ -68,10 +84,20 @@ const PaymentCollapse = ({ payment_id, show }) => {
               </Column2>
             </Row>
           )}
+          {game.status && (
+            <Row>
+              <Column>
+                <Text>Checado</Text>
+              </Column>
+              <Column2>
+                <Text2>{statusHandler(game.status)}</Text2>
+              </Column2>
+            </Row>
+          )}
           {payment.status && (
             <Row>
               <Column>
-                <Text>Status</Text>
+                <Text>Status do pagamento</Text>
               </Column>
               <Column2>
                 <TextStatus color={getBadge(payment.status)}>

@@ -51,8 +51,8 @@ const Raffles = () => {
         items={raffles}
         fields={fields}
         // columnFilter
-        tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
         // footer
+        tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
         itemsPerPageSelect={{ label: 'Items por página' }}
         itemsPerPage={20}
         hover

@@ -180,7 +180,7 @@ const RafflesDetail = () => {
     { key: 'id', _style: { width: '1%' }, label: 'id' },
     { key: 'name', label: 'Nome do jogo' },
     { key: 'numbers', label: 'Números' },
-    { key: 'status', label: 'Status' },
+    // { key: 'status', label: 'Status' },
     { key: 'created_at', label: 'Jogado' },
     // { key: 'payment_id', _style: { width: '1%' }, label: 'Pagamento' },
     { key: 'pgtoStatus', label: 'Pgto' },
@@ -287,7 +287,9 @@ const RafflesDetail = () => {
           fields={fields}
           columnFilter
           footer
-          responsive={true}
+          // outlined={true}
+          // border={true}
+          // clickableRows={true}
           tableFilter={{ label: ' ', placeholder: 'Filtrar' }}
           itemsPerPageSelect={{ label: 'Items por página' }}
           itemsPerPage={20}
@@ -340,7 +342,7 @@ const RafflesDetail = () => {
                 return (
                   <CCollapse show={details.includes(index)}>
                     <PaymentCollapse
-                      payment_id={item.payment.platform_payment_id}
+                      game={item}
                       show={details.includes(index)}
                     />
                   </CCollapse>
@@ -349,7 +351,7 @@ const RafflesDetail = () => {
                 return (
                   <CCollapse show={details.includes(index)}>
                     <SignatureCollapse
-                      payment_id={item.payment.platform_payment_id}
+                      game={item}
                       show={details.includes(index)}
                     />
                   </CCollapse>

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLayoutSideBarShow } from '../redux/actions/layout/layoutActions';
 
@@ -24,6 +24,18 @@ import CIcon from '@coreui/icons-react';
 import navigationPublic from './_navPublic';
 import navigationUser from './_nav';
 import navigationAdmin from './_navAdmin';
+
+/*
+ * Modifying on hover of .c-sidebar-nav-item
+ *
+ * insert as the last rule in the last sheet so it
+ * overrides (not overwrites) previous definitions
+ */
+
+var lastSheet = document.styleSheets[document.styleSheets.length - 1];
+lastSheet.insertRule(
+  '.c-sidebar-nav-item a:hover {  background: #4AD395 !important; }',
+);
 
 const TheSidebar = () => {
   const dispatch = useDispatch();

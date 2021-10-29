@@ -32,10 +32,29 @@ import navigationAdmin from './_navAdmin';
  * overrides (not overwrites) previous definitions
  */
 
-var lastSheet = document.styleSheets[document.styleSheets.length - 1];
-lastSheet.insertRule(
-  '.c-sidebar-nav-item a:hover {  background: #4AD395 !important; }',
-);
+var css = '.c-sidebar-nav-item a:hover {  background: #4AD395 !important; }';
+var style = document.createElement('style');
+
+if (style.styleSheet) {
+  style.styleSheet.cssText = css;
+} else {
+  style.appendChild(document.createTextNode(css));
+}
+
+document.getElementsByTagName('head')[0].appendChild(style);
+
+// const a = document.getElementsByClassName('c-sidebar-nav-item');
+// for (var i = 0; i < a.length; i++) {
+//   // a[i].innerText = 'Hello JavaScript!'; // Change the content
+//   a[i].style = '{ background: red }';
+// }
+// a[0].style.background = 'red';
+// console.log(a);
+
+// var lastSheet = document.styleSheets[document.styleSheets.length - 1];
+// lastSheet.insertRule(
+//   '.c-sidebar-nav-item a:hover {  background: #4AD395 !important; }',
+// );
 
 const TheSidebar = () => {
   const dispatch = useDispatch();

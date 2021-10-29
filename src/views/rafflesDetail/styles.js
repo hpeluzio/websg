@@ -36,16 +36,17 @@ export const Row = styled.div`
 `;
 
 export const Column = styled.div`
-  /* justify-content: center; */
-  /* align-items: center; */
   display: flex;
+  flex-direction: row;
   flex: 1;
+  flex-wrap: nowrap;
   padding: 0.1rem;
 `;
 
 export const Left = styled.div`
   display: flex;
   flex: 1;
+  height: 3.5rem;
   padding: 0.1rem;
   align-items: center;
   justify-content: center;
@@ -53,7 +54,8 @@ export const Left = styled.div`
 
 export const Right = styled.div`
   display: flex;
-  flex: 4;
+  flex: 3;
+  height: 3.5rem;
   padding: 0.1rem;
   align-items: center;
   justify-content: center;
@@ -62,7 +64,9 @@ export const Right = styled.div`
 export const Text = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: row;
+  /* flex-direction: row; */
+  align-items: center;
+  /* justify-content: center; */
   align-self: stretch;
   border-style: solid;
   border-color: ${colors.lightGray};
@@ -77,6 +81,8 @@ export const Text2 = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
   align-self: stretch;
   border-style: solid;
   border-color: ${colors.lightGray};

@@ -25,35 +25,20 @@ import NoItemsViewSlot from 'src/components/NoItemsViewSlot';
 const RafflesDetail = props => {
   const [raffle, setRaffle] = useState({});
   const [games, setGames] = useState([]);
+  const [totalPrize, setTotalPrize] = useState(0);
   let { id } = useParams();
 
   const loadRaffle = useCallback(async () => {
     const _response = await RaffleService.detail({ id });
+    const { data } = await RaffleService.getTotalPrizeOfSpecificRaffle({ id });
     setRaffle(_response.data);
     setGames(_response.data.games);
+    setTotalPrize(data);
   }, [id]);
 
   useEffect(() => {
     loadRaffle();
   }, [loadRaffle]);
-
-  // useEffect(() => {
-  //   console.log(raffle);
-  // }, [raffle]);
-
-  // const statusHandler = useCallback(status => {
-  //   if (status === 'notchecked') {
-  //     return 'Não visualizado';
-  //   }
-
-  //   if (status === 'checked') {
-  //     return 'Visualizado';
-  //   }
-
-  //   if (status === 'received') {
-  //     return 'Pago';
-  //   }
-  // }, []);
 
   const numbersHandler = useCallback(numbers => {
     if (numbers === null || numbers === undefined) {
@@ -157,6 +142,14 @@ const RafflesDetail = props => {
               </Left>
               <Right>
                 <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
+              </Right>
+            </Column>
+            <Column>
+              <Left>
+                <Text> Prêmio Acumulado:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{totalPrize.toFixed(2).replace(/\./g, ',')}</Text2>
               </Right>
             </Column>
             <Column>

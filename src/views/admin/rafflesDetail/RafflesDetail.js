@@ -48,6 +48,7 @@ const RafflesDetail = () => {
   const [games, setGames] = useState([]);
   const [showEditRaffle, setShowEditRaffle] = useState(false);
   const [showEditNumbersRaffle, setShowEditNumbersRaffle] = useState(false);
+  const [totalPrize, setTotalPrize] = useState(0);
   let { id } = useParams();
 
   // useEffect(() => {
@@ -68,8 +69,10 @@ const RafflesDetail = () => {
 
   const loadRaffle = useCallback(async () => {
     const _response = await RaffleService.detailAdmin({ id });
+    const { data } = await RaffleService.getTotalPrizeOfSpecificRaffle({ id });
     setRaffle(_response.data);
     setGames(_response.data.games);
+    setTotalPrize(data);
   }, [id]);
 
   useEffect(() => {
@@ -231,6 +234,14 @@ const RafflesDetail = () => {
               </Left>
               <Right>
                 <Text2>{moment(raffle.end).format('DD/MM/YY, H:mm:ss')}</Text2>
+              </Right>
+            </Column>
+            <Column>
+              <Left>
+                <Text> Prêmio Acumulado:</Text>{' '}
+              </Left>
+              <Right>
+                <Text2>{totalPrize.toFixed(2).replace(/\./g, ',')}</Text2>
               </Right>
             </Column>
             <Column>

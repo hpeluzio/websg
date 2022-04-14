@@ -65,8 +65,8 @@ const Login = () => {
   const login = useCallback(async () => {
     if (validateFieldEmail() && validateFieldPassword()) {
       const { status, data } = await SessionService.login({
-        email: 'h@v.com',
-        password: 'qweqwe',
+        email: email,
+        password: password,
       });
       // console.log('Login', status, data);
 
